@@ -10,7 +10,7 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 
 ## Project Status
 
-Project is still under development
+Project is still under development 
 
 <!-- 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
