@@ -3,10 +3,16 @@
 Laravel Referral Project for Blythedale Coastal Estate
 
 - [Blythedale Coastal Estate - Website](http://blythedale.co.za/).
-- [Laravel](https://laravel.com/docs/container).
+- [Laravel](https://laravel.com/).
 
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+
+## Project build using:
+
+- Laravel v5.4
+- HTML5
+- Vue.js
 
 ## Project Status
 
