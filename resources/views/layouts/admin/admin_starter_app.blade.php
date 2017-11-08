@@ -29,7 +29,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- <script src="https://unpkg.com/vue"></script> -->
+  <script src="https://unpkg.com/vue"></script>
 
 </head>
 <!--
