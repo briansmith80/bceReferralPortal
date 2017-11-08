@@ -51,7 +51,13 @@
                           <!-- /.box-header -->
                           <div class="box-body" style="">
                            
-
+                          <p>
+                            <ul>
+                              <li>Add a new referral >></li>
+                              <li>update my profile >></li>
+                              <li><a href="/myreferrals/excel">export all your referrals</a> >></li>
+                            </ul>
+                          </p>
 
                           </div>
                           <!-- /.box-body -->

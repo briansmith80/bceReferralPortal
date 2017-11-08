@@ -4,7 +4,7 @@
 @section('content')
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ route('home') }}"><b>eLan</b>LOGIN</a>
+    <a href="{{ route('home') }}"><b>bcePortal</b>LOGIN</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

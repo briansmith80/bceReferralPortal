@@ -1,18 +1,17 @@
 ## About bceReferralPortal
 
-Laravel Referral Project for Blythedale Coastal Estate
+Referral Project for Blythedale Coastal Estate - Allows users and agents to register and submit there referrals. 
 
 - [Blythedale Coastal Estate - Website](http://blythedale.co.za/).
 - [Laravel](https://laravel.com/).
 
+## Project built using:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Project build using:
-
-- Laravel v5.4
-- HTML5
-- Vue.js
+- php : 5.6.4
+- acacha/admin-lte-template-laravel : 4.1
+- laravel/framework : 5.4
+- maatwebsite/excel : 2.1.0
+- santigarcor/laratrust : 5.0
 
 ## Project Status
 
