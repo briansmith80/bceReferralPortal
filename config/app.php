@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Backend'),
+    'name' => env('APP_NAME', 'bceReferralPortal'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://referral.dev'),
 
     /*
     |--------------------------------------------------------------------------
