@@ -66,7 +66,6 @@
                   <td>{{$referral->created_at->toFormattedDateString()}}</td>
                   <td>
                       <div class="btn-group">
-                       
                       <a class="btn btn-default" href="{{route('myreferrals.show', $referral->id)}}"><i class="fa fa-eye"></i> </a> 
                       <a class="btn btn-default" href="{{route('myreferrals.edit', $referral->id)}}"><i class="fa fa-edit"></i> </a>
                       <a class="btn btn-danger" href="{{route('myreferrals.destroy', $referral->id)}}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"><i class="fa fa-trash-o"></i> </a>

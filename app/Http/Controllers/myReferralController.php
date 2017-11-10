@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\Mail\ReferralAdded;
+
 use Illuminate\Http\Request;
 use App\Referral;
 use Session;
@@ -81,6 +84,11 @@ class myReferralController extends Controller
       // }
 
       Session::flash('success', 'Successfully added your new '. $referrals->firstname . ' referral in the database.');
+
+      // email the referral to confirm 
+      $mail = $request->email;
+      Mail::to($mail)->send(new ReferralAdded);
+
       return redirect()->route('myreferrals.show', $referrals->id);
     }
 
