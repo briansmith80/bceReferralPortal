@@ -39,6 +39,11 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|membe
   Route::resource('/myprofile', 'myProfileController',  ['except' => ['create', 'store', 'show', 'destroy' ]]);
 });
 
+Route::get('/mailable', function () {
+    $referral = App\Referral::find(2);
+
+    return new App\Mail\Registerwelcome($referral);
+});
 
 // Export data to Excel 
 Route::get('referrals/excel', 
