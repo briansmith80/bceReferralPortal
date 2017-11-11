@@ -1,6 +1,10 @@
-This is a test
+
 
 
 <div>
-    Hi {{-- $referral->firstname --}}
+    Hi {{ $referral->firstname }} {{ $referral->lastname }}
+	<br>
+    Email: {{ $referral->email }}
+    <br>
+    ID: {{ $referral->ID_number }}
 </div>

@@ -83,11 +83,20 @@ class myReferralController extends Controller
       //   $referrals->syncPermissions(explode(',', $request->permissions));
       // }
 
-      Session::flash('success', 'Successfully added your new '. $referrals->firstname . ' referral in the database.');
-
-      // email the referral to confirm 
+     Session::flash('success', 'Successfully added your new '. $referrals->firstname . ' referral in the database.');
+     
+     // get the id for the inserted referral
+     $insertedId = $referrals->id;
+     // get the referral data for the last inserted referral
+     $referral = Referral::findOrFail($insertedId);
+     //dd($referral);
+     
+     // email the referral to confirm 
       $mail = $request->email;
-      Mail::to($mail)->send(new ReferralAdded);
+      Mail::to($mail)->send(new ReferralAdded($referral));
+     // 
+     // email the current user and send through the referral data
+     // Mail::to($request->user())->send(new ReferralAdded($referral));
 
       return redirect()->route('myreferrals.show', $referrals->id);
     }

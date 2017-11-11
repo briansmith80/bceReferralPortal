@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-// use App\Referral;
+use App\Referral;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -18,17 +18,17 @@ class ReferralAdded extends Mailable
      *
      * @var Order
      */
-    // public $referral;
+    public $referral;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    // public function __construct(Referral $referral)
-    // {
-    //     $this->referral = $referral;
-    // }
+    public function __construct(Referral $referral)
+    {
+        $this->referral = $referral;
+    }
 
 
     /**
