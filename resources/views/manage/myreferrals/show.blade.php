@@ -84,11 +84,11 @@
                   </tr>
                    <tr>
                     <th>Date Signed</th>
-                    <td>{{$referrals->status}}</td>
+                    <td>{{$referrals->date_signed}}</td>
                   </tr>
                    <tr>
                     <th>Date Paid</th>
-                    <td>{{$referrals->status}}</td>
+                    <td>{{$referrals->date_paid}}</td>
                   </tr>
                   <tr>
                     <td></td>

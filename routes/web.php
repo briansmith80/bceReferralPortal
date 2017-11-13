@@ -39,11 +39,15 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|membe
   Route::resource('/myprofile', 'myProfileController',  ['except' => ['create', 'store', 'show', 'destroy' ]]);
 });
 
-Route::get('/mailable', function () {
-    $referral = App\Referral::find(2);
+ 
+Route::resource('/referafriend', 'referafriendController',  ['except' => ['create', 'store', 'edit', 'destroy' ]]);
 
-    return new App\Mail\Registerwelcome($referral);
-});
+// reffered user to accept referral
+Route::get('/accept/{id}', 'myReferralController@accept')->name('accept');
+
+// reffered user to decline referral
+Route::get('/decline/{id}', 'myReferralController@decline')->name('decline');
+
 
 // Export data to Excel 
 Route::get('referrals/excel', 

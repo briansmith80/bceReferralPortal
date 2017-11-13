@@ -23,7 +23,7 @@ class myReferralController extends Controller
     public function index()
     {
         
-         // get the current logged in users id
+    // get the current logged in users id
     $current_user_id = Auth::user()->id;
 
     //$referrals = User::find(1)->link1;
@@ -63,7 +63,7 @@ class myReferralController extends Controller
         'firstname' => 'required|max:255',
         'lastname' => 'required|max:255',
         'email' => 'required|max:100|email',
-        'ID_number' => 'required|max:100'
+        
       ]);
 
       $referrals = new Referral();
@@ -74,7 +74,7 @@ class myReferralController extends Controller
       $referrals->landline_number = $request->landline_number;
       $referrals->mobile_number = $request->mobile_number;
       $referrals->ID_number = $request->ID_number;
-      $referrals->status = $request->status;
+      $referrals->status = 1;
       $referrals->date_signed = $request->date_signed;
       $referrals->date_paid = $request->date_paid;
       $referrals->save();
@@ -91,6 +91,10 @@ class myReferralController extends Controller
      $referral = Referral::findOrFail($insertedId);
      //dd($referral);
      
+     // get the current logged in users id
+    //$user_name = Auth::user()->name;
+
+
      // email the referral to confirm 
       $mail = $request->email;
       Mail::to($mail)->send(new ReferralAdded($referral));
@@ -150,7 +154,7 @@ class myReferralController extends Controller
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|max:100|email',
-            'ID_number' => 'required|max:100'
+            //'ID_number' => 'required|max:100'
         ]);
           $referrals = Referral::findOrFail($id);
           $referrals->user_id = $request->user_id;
@@ -183,6 +187,53 @@ class myReferralController extends Controller
 
         Session::flash('warning', 'Successfully deleted the referral - ' . $referrals->firstname . '.');
         return redirect()->route('myreferrals.index', $id);
+    }
+
+
+    /**
+     * Accept refer a friend via email link
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function accept($id)
+    {
+        //
+        $referrals = Referral::findOrFail($id);
+        
+        if (!is_null($referrals)) {
+            $referrals->status = 2;
+            $referrals->save();
+            Session::flash('success', 'Successfully updated');
+            return redirect()->route('login', $id);
+        }
+        Session::flash('warning', 'error');
+        return redirect()->route('login', $id);
+
+        
+    }
+
+    /**
+     * Decline refer a friend via email link
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function decline($id)
+    {
+        //
+        $referrals = Referral::findOrFail($id);
+        
+        if (!is_null($referrals)) {
+            $referrals->status = 3;
+            $referrals->save();
+            Session::flash('success', 'Successfully updated');
+            return redirect()->route('login', $id);
+        }
+        Session::flash('warning', 'error');
+        return redirect()->route('login', $id);
+
+        
     }
 
  /**

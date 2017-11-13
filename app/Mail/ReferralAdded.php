@@ -28,6 +28,7 @@ class ReferralAdded extends Mailable
     public function __construct(Referral $referral)
     {
         $this->referral = $referral;
+
     }
 
 
@@ -39,9 +40,12 @@ class ReferralAdded extends Mailable
     public function build()
     {
         return $this->from('noreply@blythedale.co.za')
-                    blade template view
+                    ->subject('Blythedale Coastal Estate: ReferralPortal - Confirm referral by ')
                     ->view('emails.referralAdded');
+                    // ->with([
+                    //     'referralUser' => $this->user_name,
 
+                    // ]);
 
 
 // To add attachments to an email, use the attach method within the mailable class' build method. The attach method accepts the full path to the file as its first argument:

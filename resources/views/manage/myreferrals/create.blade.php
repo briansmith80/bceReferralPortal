@@ -98,7 +98,7 @@
 
                 <div class="form-group @if ($errors->has('ID_number')) has-error @endif">
                   <label for="discription">South African ID Number*</label>
-                  <input type="number" class="form-control" id="ID_number" name="ID_number" placeholder="Enter mobile number" required>
+                  <input type="number" class="form-control" id="ID_number" name="ID_number" placeholder="Enter mobile number" >
                   @if ($errors->has('ID_number')) 
                   <span class="help-block">ID Number is required</span>
                   @endif
