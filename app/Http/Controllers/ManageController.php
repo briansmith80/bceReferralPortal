@@ -9,7 +9,7 @@ class ManageController extends Controller
     //
     public function index()
     {
-    	return redirect()->route('manage.dashboard');
+    	return redirect()->route('dashboard.index');
     }
 
     public function dashboard()

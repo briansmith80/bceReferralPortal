@@ -8,7 +8,7 @@
 <section class="content-header">
       <h1>
         Dashboard
-        <small>Optional description</small>
+        <!-- <small>Optional description</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -25,7 +25,7 @@
             <div class="box-header with-border">
               <i class="fa fa-text-width"></i>
 
-              <h3 class="box-title">Headlines</h3>
+              <h3 class="box-title">Total Referrels: {{$total}}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -34,7 +34,7 @@
                   <div class="col-md-6">
                     
                     <h1>Welcome, {{ Auth::user()->name }}!</h1>
-                    <p class="lead">Thanks for becoming a member -- we're excited to have you on board! You can now use the My Referral Agent platform to manage all of your inbound and outbound referrals. Use the links at right to get started, and if you have any questions, please let us know!</p>
+                    <p class="lead">Thanks for becoming a member -- we're excited to have you on board! You can now use the <strong>bce</strong>Referral<strong>Portal</strong> platform to manage all of your outbound referrals. Use the links at right to get started, and if you have any questions, please let us know!</p>
 
                   </div>
                   <div class="col-md-6">
@@ -53,9 +53,9 @@
                            
                           <p>
                             <ul>
-                              <li>Add a new referral >></li>
-                              <li>update my profile >></li>
-                              <li><a href="/myreferrals/excel">export all your referrals</a> >></li>
+                              <li><a href="{{route('myreferrals.create')}}">Add new Referrals</a> >></li>
+                              <li><a href="{{route('myprofile.index')}}">Update my Profile</a> >></li>
+                              <li><a href="/myreferrals/excel">Export all your Referrals (.xlsx)</a> >> {{$total}}</li>
                             </ul>
                           </p>
 
@@ -72,12 +72,12 @@
                             
                                 <div class="small-box bg-aqua">
                                   <div class="inner">
-                                    <h3>5</h3>
+                                    <h3>{{$pending}}</h3>
 
-                                    <p>Total Referrals</p>
+                                    <p>Pending Referrals</p>
                                   </div>
                                   <div class="icon">
-                                    <i class="fa fa-users"></i>
+                                    <i class="fa fa-paper-plane-o"></i>
                                   </div>
                                   <a href="#" class="small-box-footer">
                                     Add New Referral <i class="fa fa-arrow-circle-right"></i>
@@ -87,14 +87,14 @@
                             </div>
                             <div class="col-lg-3 col-xs-6">
 
-                              <div class="small-box bg-primary">
+                              <div class="small-box bg-teal">
                                   <div class="inner">
-                                    <h3>R150.00</h3>
+                                    <h3>{{$accepted}}</h3>
 
-                                    <p>Total Commission</p>
+                                    <p>Accepted Referrals</p>
                                   </div>
                                   <div class="icon">
-                                    <i class="fa fa-money"></i>
+                                    <i class="fa fa-check-circle"></i>
                                   </div>
                                   <a href="#" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
@@ -106,12 +106,12 @@
 
                               <div class="small-box bg-maroon">
                                   <div class="inner">
-                                    <h3>R150.00</h3>
+                                    <h3>{{$declined}}</h3>
 
-                                    <p>Total Commission</p>
+                                    <p>Declined Referrals</p>
                                   </div>
                                   <div class="icon">
-                                    <i class="fa fa-money"></i>
+                                    <i class="fa fa-thumbs-o-down"></i>
                                   </div>
                                   <a href="#" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
@@ -121,14 +121,14 @@
                             </div> 
                             <div class="col-lg-3 col-xs-6">
 
-                              <div class="small-box bg-purple">
+                              <div class="small-box bg-green">
                                   <div class="inner">
-                                    <h3>R150.00</h3>
+                                    <h3>{{$completed}}</h3>
 
-                                    <p>Total Commission</p>
+                                    <p>Completed Referrals</p>
                                   </div>
                                   <div class="icon">
-                                    <i class="fa fa-money"></i>
+                                    <i class="fa fa-trophy"></i>
                                   </div>
                                   <a href="#" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>

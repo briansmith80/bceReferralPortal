@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         //return view('layouts.admin.dashboard');
-        return view('manage.dashboard');
+        return redirect()->route('dashboard.index');
     }
 }

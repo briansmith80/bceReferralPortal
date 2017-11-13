@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 // Route::get('/admin_example', function () {
 // 	return view('admin_template');
 // });
@@ -34,13 +35,11 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|')->g
   // normal access
 Route::prefix('manage')->middleware('role:superadministrator|administrator|member|user')->group(function () {
 	Route::get('/', 'ManageController@index');
-  Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
+ // Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
+  Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
   Route::resource('/myreferrals', 'myReferralController');
   Route::resource('/myprofile', 'myProfileController',  ['except' => ['create', 'store', 'show', 'destroy' ]]);
 });
-
- 
-Route::resource('/referafriend', 'referafriendController',  ['except' => ['create', 'store', 'edit', 'destroy' ]]);
 
 // reffered user to accept referral
 Route::get('/accept/{id}', 'myReferralController@accept')->name('accept');

@@ -44,10 +44,16 @@
                   <b>Total Referrals</b> <a class="pull-right">{{$total}}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Total Signed Agreements</b> <a class="pull-right">1</a>
+                  <b>Pending Referrals</b> <a class="pull-right">{{$pending}}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Commission</b> <a class="pull-right">R5,000.00</a>
+                  <b>Accepted Referrals</b> <a class="pull-right">{{$accepted}}</a>
+                </li>
+                 <li class="list-group-item">
+                  <b>Declined Referrals</b> <a class="pull-right">{{$declined}}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Completed Referrals</b> <a class="pull-right">{{$completed}}</a>
                 </li>
               </ul>
 

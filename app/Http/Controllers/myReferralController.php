@@ -204,11 +204,11 @@ class myReferralController extends Controller
         if (!is_null($referrals)) {
             $referrals->status = 2;
             $referrals->save();
-            Session::flash('success', 'Successfully updated');
-            return redirect()->route('login', $id);
+            Session::flash('success', 'Your option to accept the referral has been sent.');
+            return redirect()->route('register', $id);
         }
-        Session::flash('warning', 'error');
-        return redirect()->route('login', $id);
+        Session::flash('danger', 'Error - Please try again');
+        return redirect()->route('register', $id);
 
         
     }
@@ -227,11 +227,11 @@ class myReferralController extends Controller
         if (!is_null($referrals)) {
             $referrals->status = 3;
             $referrals->save();
-            Session::flash('success', 'Successfully updated');
-            return redirect()->route('login', $id);
+            Session::flash('warning', 'Your option to decline the referral has been sent. You may close this page now.');
+            return redirect()->route('register', $id);
         }
-        Session::flash('warning', 'error');
-        return redirect()->route('login', $id);
+        Session::flash('error', 'Error - Please try again');
+        return redirect()->route('register', $id);
 
         
     }

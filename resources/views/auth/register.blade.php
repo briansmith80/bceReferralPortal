@@ -7,6 +7,8 @@
     <a href="{{ route('home') }}"><b>bcePortal</b>LOGIN</a>
   </div>
   <!-- /.login-logo -->
+   <!-- Notification flash messages -->
+    @include('layouts.admin.partials.flash_message')
   <div class="login-box-body">
     <p class="login-box-msg">Register a new membership</p>
 

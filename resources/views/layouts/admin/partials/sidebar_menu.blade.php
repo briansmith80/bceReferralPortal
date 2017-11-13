@@ -32,7 +32,7 @@
       <ul class="sidebar-menu">
         <li class="header">NAVIGATION</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="{{route('manage.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
         @role('administrator|member|user')
         

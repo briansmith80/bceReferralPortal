@@ -4,7 +4,7 @@
 <div>
     Hi {{ $referral->firstname }} {{ $referral->lastname }}
 	<br><br>
-    You have been referred by name Surname (email) on the Blythedale Coastal Estate: Refer your Friend on {{ $referral->date_created }}.
+    You have been referred by name Surname (email) on the Blythedale Coastal Estate: Refer your Friend on {{ $referral->created_at }}.
     <br><br>
     Do you accept the refferal?
     <br>
