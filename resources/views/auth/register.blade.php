@@ -16,13 +16,13 @@
     {{ csrf_field() }}
 
       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} has-feedback">
-        <input id="name" name="name" type="text" class="form-control" placeholder="Name" value="{{ old('name') }}" autofocus>
+        <input id="name" name="name" type="text" class="form-control" placeholder="Firstname" value="{{ old('name') }}" autofocus>
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
                 </span>
             @endif
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
         <input id="email" name="email" type="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
@@ -47,14 +47,37 @@
            
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+
+      <div class="form-group">
+        <label>Select registration type</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="friend">
+                Refer a friend
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="agent">
+                Estate Agent
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios3" value="supplier">
+                Company Supplier
+              </label>
+            </div>
+      </div>
+
       <div class="row">
-<!--         <div class="col-xs-8">
+        <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
               <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
             </label>
           </div>
-        </div> -->
+        </div>
         <!-- /.col -->
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
