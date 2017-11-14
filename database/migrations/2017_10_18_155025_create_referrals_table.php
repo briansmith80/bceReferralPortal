@@ -21,7 +21,7 @@ class CreateReferralsTable extends Migration
             $table->string('email')->nullable();
             $table->string('landline_number')->nullable();
             $table->string('mobile_number')->nullable();
-            $table->string('ID_number')->unique();
+            $table->string('ID_number')->nullable();
             $table->integer('status')->nullable();
             $table->date('date_signed')->nullable();
             $table->date('date_paid')->nullable();
