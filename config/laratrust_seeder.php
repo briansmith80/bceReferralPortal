@@ -17,9 +17,21 @@ return [
         'user' => [
             'profile' => 'r,u'
         ],
+        'agent' => [
+            'profile' => 'r,u'
+        ],
+        'friend' => [
+            'profile' => 'r,u'
+        ],
+        'supplier' => [
+            'profile' => 'r,u'
+        ],
     ],
     'permission_structure' => [
         'cru_user' => [
+            'profile' => 'c,r,u'
+        ],
+        'mixmethod' => [
             'profile' => 'c,r,u'
         ],
     ],

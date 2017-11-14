@@ -58,14 +58,14 @@ return array(
     ],
 
     'properties' => [
-        'creator'        => 'eLanWebsite',
-        'lastModifiedBy' => 'eLanWebsite',
+        'creator'        => 'BLythdale',
+        'lastModifiedBy' => 'BLythdale',
         'title'          => 'Spreadsheet',
         'description'    => 'Default spreadsheet export',
         'subject'        => 'Spreadsheet export',
-        'keywords'       => 'eLanWebsite, excel, export',
+        'keywords'       => 'BLythdale, excel, export',
         'category'       => 'Excel',
-        'manager'        => 'eLanWebsite',
+        'manager'        => 'BLythdale',
         'company'        => 'eLan Property Group',
     ],
 
