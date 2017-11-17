@@ -11,19 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
+// Route::get('/', function () {
+//     return redirect('login');
+// });
+// Route::get('/', function () {
+//     return redirect('/manage/dashboard');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/', 'HomeController@index')->name('/');
+// Route::get('/home', function () {
+//     return redirect('/manage/dashboard');
+// });
 
 // Route::get('/admin_example', function () {
 // 	return view('admin_template');
 // });
-
 
  // admin access
 Route::prefix('manage')->middleware('role:superadministrator|administrator|')->group(function () {
@@ -33,13 +38,16 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|')->g
 	Route::resource('/referrals', 'ReferralController', ['except' => 'destroy']);
 });
   // normal access
-Route::prefix('manage')->middleware('role:superadministrator|administrator|member|user')->group(function () {
-	Route::get('/', 'ManageController@index');
+Route::prefix('manage')->middleware('role:superadministrator|administrator|member|user|friend|agent|supplier')->group(function () {
+	//Route::get('/', 'ManageController@index');
  // Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
   Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
   Route::resource('/myreferrals', 'myReferralController');
   Route::resource('/myprofile', 'myProfileController',  ['except' => ['create', 'store', 'show', 'destroy' ]]);
 });
+
+// reffered user to accept referral
+//Route::get('/changerole/{id}', 'UserController@changerole')->name('changerole');
 
 // reffered user to accept referral
 Route::get('/accept/{id}', 'myReferralController@accept')->name('accept');

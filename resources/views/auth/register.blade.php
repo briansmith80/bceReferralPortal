@@ -4,7 +4,7 @@
 @section('content')
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ route('home') }}"><b>bcePortal</b>LOGIN</a>
+    <a href="#"><b>bcePortal</b>LOGIN</a>
   </div>
   <!-- /.login-logo -->
    <!-- Notification flash messages -->
@@ -52,20 +52,20 @@
         <label>Select registration type</label>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="friend">
+                <input type="radio" name="usertype" id="friend" value="6">
                 Refer a friend
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="agent">
+                <input type="radio" name="usertype" id="agent" value="5">
                 Estate Agent
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios3" value="supplier">
-                Company Supplier
+                <input type="radio" name="usertype" id="supplier" value="7" disabled="">
+                <del>Company Supplier</del>
               </label>
             </div>
       </div>

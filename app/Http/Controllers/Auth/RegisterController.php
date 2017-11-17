@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -51,6 +52,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'usertype' => 'required|string',
         ]);
     }
 
@@ -62,10 +64,44 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+       
+
+
+
+        $fields = [
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            'usertype' => $data['usertype'],
+
+        ];
+        // if (config('auth.providers.users.field','email') === 'username' && isset($data['username'])) {
+        //     $fields['username'] = $data['username'];
+        // }
+
+      // dd($fields);
+        return User::create($fields);
+
+        ///EXTRA///
+        /// put below extra code in vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php
+        //Requests the user type from register form           
+        $user->usertype = $request->usertype;
+        // Saves user Type to logged in user
+        $user->save();
+
+        // Get selected role type variable from register form 
+        $selectedRoleType = $request->usertype;
+        
+        // Get current logged in user ID
+        $current_user_id = Auth::user()->id;  
+        $user = User::findOrFail($current_user_id); //Find user based of current logged in user id for below user attach
+        // Get Role Info 
+        //$friend = Role::where('name', 'friend')->first();
+
+        // Attach Role based of user choice from form and user looged in.
+        $user->attachRole($selectedRoleType); //$friend or 6 or $selectedRoleType
+        //$user->attchRole(6);
+        ///EXTRA///
     }
+
 }

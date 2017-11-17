@@ -34,7 +34,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
-        @role('administrator|member|user')
+        @role('administrator|member|user|friend')
         
         <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Calendar</span></a></li> -->
 

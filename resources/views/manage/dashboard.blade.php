@@ -8,7 +8,7 @@
 <section class="content-header">
       <h1>
         Dashboard
-        <!-- <small>Optional description</small> -->
+        <small>usertype: {{Auth::user()->usertype }}</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
