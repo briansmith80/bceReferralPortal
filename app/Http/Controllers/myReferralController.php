@@ -62,7 +62,7 @@ class myReferralController extends Controller
         'user_id' => 'required|max:20',
         'firstname' => 'required|max:255',
         'lastname' => 'required|max:255',
-        'email' => 'required|max:100|email',
+        'email' => 'required|max:100|email|unique:referrals',
         
       ]);
 
@@ -153,7 +153,7 @@ class myReferralController extends Controller
         $this->validate($request, [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'email' => 'required|max:100|email',
+            'email' => 'required|max:100|email|unique:referrals',
             //'ID_number' => 'required|max:100'
         ]);
           $referrals = Referral::findOrFail($id);

@@ -75,7 +75,7 @@
                   <input type="text" class="form-control" id="user_id" value="{{$referrals->user_id}}" name="user_id" placeholder="{{$referrals->user_id}}" disabled="">
                 </div>  --> 
                 <div class="form-group @if ($errors->has('firstname')) has-error @endif">
-                  <label for="display_name" >Firstname</label>
+                  <label for="display_name" >Firstname*</label>
                   <input type="text" class="form-control" id="firstname" name="firstname" value="{{$referrals->firstname}}" placeholder="Enter firstname">
                   @if ($errors->has('firstname')) 
                   <span class="help-block">Firstname is required</span>
@@ -86,17 +86,17 @@
                   <input type="text"  v-if="permissionType == 'basic'" class="form-control" id="name" name="name" placeholder="Enter slug">
                 </div> -->
                 <div class="form-group @if ($errors->has('lastname')) has-error @endif">
-                  <label for="discription">Lastname</label>
+                  <label for="discription">Lastname*</label>
                   <input type="text" class="form-control" id="lastname" name="lastname"  value="{{$referrals->lastname}}" placeholder="Enter lastname">
                   @if ($errors->has('lastname')) 
                   <span class="help-block">Lastname is required</span>
                   @endif
                 </div>
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
-                  <label for="discription">Email</label>
+                  <label for="discription">Email*</label>
                   <input type="email" class="form-control" id="email" name="email"  value="{{$referrals->email}}" placeholder="Enter email">
                   @if ($errors->has('email')) 
-                  <span class="help-block">Email is required</span>
+                  <span class="help-block">Email is required.</span>
                   @endif
                 </div>
                 <div class="form-group">

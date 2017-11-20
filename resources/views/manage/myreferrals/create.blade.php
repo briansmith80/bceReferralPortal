@@ -73,7 +73,7 @@
                   <label for="discription">Email*</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
                   @if ($errors->has('email')) 
-                  <span class="help-block">Valid email is required</span>
+                  <span class="help-block">Valid email is required or this email is already registered as a referral.</span>
                   @endif 
                 </div>
                 <div class="form-group">
@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="form-group @if ($errors->has('ID_number')) has-error @endif">
-                  <label for="discription">South African ID Number*</label>
+                  <label for="discription">South African ID Number</label>
                   <input type="number" class="form-control" id="ID_number" name="ID_number" placeholder="Enter mobile number" >
                   @if ($errors->has('ID_number')) 
                   <span class="help-block">ID Number is required</span>
