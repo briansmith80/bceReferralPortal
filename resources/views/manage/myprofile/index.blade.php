@@ -8,7 +8,15 @@
 <section class="content-header">
       <h1>
         My Profile
-        <small>Optional description</small>
+        <small>
+        @if ($user->usertype == 6)
+                      Refer a Friend
+                  @elseif ($user->usertype == 5)
+                      Estate Agent
+                  @else
+                      No user type :-(
+                  @endif
+        </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> My Profile</a></li>
@@ -322,9 +330,9 @@
     //$("[data-mask]").inputmask();
 
   //Date picker
-    $('#inputdob1').datepicker({
-      autoclose: true
-    });
+    // $('#inputdob1').datepicker({
+    //   autoclose: true
+    // });
    
 
     $(function () {
