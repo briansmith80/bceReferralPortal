@@ -67,6 +67,10 @@
                     <td>{{$referrals->lastname}}</td>
                   </tr>
                   <tr>
+                    <th>Email</th>
+                    <td>{{$referrals->email}}</td>
+                  </tr>
+                  <tr>
                     <th>Land Line Number</th>
                     <td>{{$referrals->landline_number}}</td>
                   </tr>

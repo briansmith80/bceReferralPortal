@@ -94,14 +94,15 @@
                 </div>
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                   <label for="discription">Email*</label>
-                  <input type="email" class="form-control" id="email" name="email"  value="{{$referrals->email}}" placeholder="Enter email">
+                  <input type="email" class="form-control" id="email" name="email"  value="{{$referrals->email}}" placeholder="" disabled="">
                   @if ($errors->has('email')) 
                   <span class="help-block">Email is required.</span>
                   @endif
                 </div>
                 <div class="form-group">
                   <label for="discription">Landline Number</label>
-                  <input type="text" class="form-control" id="landline_number" name="landline_number"   placeholder="Enter landline number">
+                  <!-- <input type="text" class="form-control" id="landline_number" name="landline_number"   placeholder="Enter landline number"> -->
+                  <input type="text" class="form-control" id="landline_number" name="landline_number" value="{{$referrals->landline_number}}" placeholder="Enter landline number" data-inputmask="&quot;mask&quot;: &quot;(999) 999-9999&quot;" data-mask="(999) 999-9999">
                 </div>
                 <!-- <div class="form-group">
                   <label>Landline Number</label>
@@ -115,7 +116,8 @@
 
                 <div class="form-group">
                   <label for="discription">Mobile Number</label>
-                  <input type="text" class="form-control" id="mobile_number" name="mobile_number"  value="{{$referrals->mobile_number}}" placeholder="Enter mobile number">
+                  <!-- <input type="text" class="form-control" id="mobile_number" name="mobile_number"  value="{{$referrals->mobile_number}}" placeholder="Enter mobile number"> -->
+                  <input type="text" class="form-control" id="mobile_number" name="mobile_number" value="{{$referrals->mobile_number}}" placeholder="Enter mobile number" data-inputmask="&quot;mask&quot;: &quot;999-999-9999&quot;" data-mask="999-999-9999">
                 </div>
 
                 <!-- <div class="form-group">
@@ -130,7 +132,8 @@
                 
                 <div class="form-group">
                   <label for="discription">South African ID Number</label>
-                  <input type="number" class="form-control" id="ID_number" name="ID_number"  value="{{$referrals->ID_number}}" placeholder="Enter mobile number">
+                  <!-- <input type="number" class="form-control" id="ID_number" name="ID_number"  value="{{$referrals->ID_number}}" placeholder="Enter ID number"> -->
+                  <input type="text" class="form-control" id="ID_number" name="ID_number" value="{{$referrals->ID_number}}" placeholder="Enter ID number" data-inputmask="&quot;mask&quot;: &quot;999999 9999 999&quot;" data-mask="000000 0000 000">
                 </div>
 
               <!-- /.box-body -->
@@ -145,7 +148,19 @@
 @endsection
 
 @section('Script')
+
+<!-- InputMask -->
+<script src="{{ asset('bower_components/adminLTE/plugins/input-mask/jquery.inputmask.js') }}"></script>
+<script src="{{ asset('bower_components/adminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+
  <script>
-       
-    </script>
+    //Datemask dd/mm/yyyy
+    //$("#inputdob").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+    // Mask: Phone Number
+    $("#landline_number").inputmask("(999) 999-9999", {"placeholder": "(999) 999-9999"});
+    // Mask: Mobile Number
+    $("#mobile_number").inputmask("999-999-9999", {"placeholder": "999-999-9999"});
+    // Mask: ID Number
+    $("#ID_number").inputmask("999999 9999 999", {"placeholder": "000000 0000 000"}); 
+ </script>
 @endsection

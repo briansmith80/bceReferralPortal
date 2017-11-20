@@ -118,7 +118,16 @@ class myProfileController extends Controller
 
       $user = User::findOrFail($id);
       $user->name = $request->name;
+      $user->surname = $request->surname;
       $user->email = $request->email;
+      $user->phone = $request->phone;
+      $user->mobile = $request->mobile;
+      $user->id_number = $request->id_number;
+      $user->dob = $request->dob;
+      $user->agency = $request->agency;
+      $user->ffc_number = $request->ffc_number;
+      $user->ffc_upload = $request->ffc_upload;
+
       if ($request->password_options == 'auto') {
         $length = 10;
         $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';

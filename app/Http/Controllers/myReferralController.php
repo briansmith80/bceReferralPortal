@@ -153,18 +153,18 @@ class myReferralController extends Controller
         $this->validate($request, [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'email' => 'required|max:100|email|unique:referrals',
+            //'email' => 'required|max:100|email',
             //'ID_number' => 'required|max:100'
         ]);
           $referrals = Referral::findOrFail($id);
           $referrals->user_id = $request->user_id;
           $referrals->firstname = $request->firstname;
           $referrals->lastname = $request->lastname;
-          $referrals->email = $request->email;
+          // $referrals->email = $request->email;
           $referrals->landline_number = $request->landline_number;
           $referrals->mobile_number = $request->mobile_number;
           $referrals->ID_number = $request->ID_number;
-          $referrals->status = $request->status;
+          // $referrals->status = $request->status;
           $referrals->date_signed = $request->date_signed;
           $referrals->date_paid = $request->date_paid;
           $referrals->save();

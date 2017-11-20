@@ -115,6 +115,8 @@
 <script src="{{ asset('bower_components/adminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('bower_components/adminLTE/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 
+
+
 <script>
   $(function () {
  
