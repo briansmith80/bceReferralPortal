@@ -9,10 +9,19 @@
           <img src="https://placehold.it/160x160/00abac/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" class="img-circle" alt="{{ Auth::user()->name }}">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name }} </p>
+          <p>{{ Auth::user()->name }} {{ Auth::user()->surname }} </p>
           
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
+            <small class="text-muted text-center">
+                @if (Auth::user()->usertype == 6)
+                  Refer a Friend
+                @elseif (Auth::user()->usertype == 5)
+                  Estate Agent
+                @else
+                  No user type :-(
+                @endif
+            </small>
         </div>
       </div>
 

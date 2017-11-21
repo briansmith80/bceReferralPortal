@@ -34,7 +34,7 @@
                   <div class="col-md-6">
                     
                     <h1>Welcome, {{ Auth::user()->name }}!</h1>
-                    <p class="lead">Thanks for becoming a member -- we're excited to have you on board! You can now use the <strong>bce</strong>Referral<strong>Portal</strong> platform to manage all of your outbound referrals. Use the links at right to get started, and if you have any questions, please let us know!</p>
+                    <p class="lead">Thanks for becoming a member -- we're excited to have you on board! You can now use the <strong>bce</strong>Referral<strong>Portal</strong> platform to manage all of your outbound referrals. Use the links on the right to get started, and if you have any questions, please let us know!</p>
 
                   </div>
                   <div class="col-md-6">

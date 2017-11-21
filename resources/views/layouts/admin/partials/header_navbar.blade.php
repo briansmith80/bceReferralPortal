@@ -41,7 +41,7 @@
               <!-- The user image in the navbar-->
               <img src="https://placehold.it/160x160/00abac/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" class="user-image" alt="{{ Auth::user()->name }}">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+              <span class="hidden-xs">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -49,7 +49,8 @@
                 <img src="https://placehold.it/160x160/00abac/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" class="img-circle" alt="{{ Auth::user()->name }}">
 
                 <p>
-                  {{ Auth::user()->name }} - <small>{{ Auth::user()->email }}</small>
+                  {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                  <small>{{ Auth::user()->email }}</small>
                   <small>Member since {{ Auth::user()->created_at->toFormattedDateString()}}</small>
                 </p>
               </li>

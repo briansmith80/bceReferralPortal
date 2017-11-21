@@ -10,12 +10,12 @@
         My Profile
         <small>
         @if ($user->usertype == 6)
-                      Refer a Friend
-                  @elseif ($user->usertype == 5)
-                      Estate Agent
-                  @else
-                      No user type :-(
-                  @endif
+          Refer a Friend
+        @elseif ($user->usertype == 5)
+          Estate Agent
+        @else
+          No user type :-(
+        @endif
         </small>
       </h1>
       <ol class="breadcrumb">
@@ -43,8 +43,16 @@
               <img class="profile-user-img img-responsive img-circle" src="https://placehold.it/160x160/7F00FF/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" alt="{{ Auth::user()->name }} profile picture">
 
 
-              <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-
+              <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h3>
+              <p class="text-muted text-center">
+                @if (Auth::user()->usertype == 6)
+                  Refer a Friend
+                @elseif (Auth::user()->usertype == 5)
+                  Estate Agent
+                @else
+                  No user type :-(
+                @endif
+              </p>  
               <p class="text-muted text-center">{{ Auth::user()->email }}</p>
 
               <ul class="list-group list-group-unbordered">
@@ -125,12 +133,12 @@
 
                  <li class="list-group-item">
                   <b>Registered Type</b> <a class="pull-right">
-                  @if ($user->usertype == 6)
-                      Refer a Friend
-                  @elseif ($user->usertype == 5)
-                      Estate Agent
+                  @if (Auth::user()->usertype == 6)
+                    Refer a Friend
+                  @elseif (Auth::user()->usertype == 5)
+                    Estate Agent
                   @else
-                      No user type :-(
+                    No user type :-(
                   @endif
                   ({{ Auth::user()->usertype }})
                   </a>

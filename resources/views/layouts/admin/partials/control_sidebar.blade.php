@@ -7,26 +7,28 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <!-- Home tab content -->
+       
       <div class="tab-pane active" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
-          <li>
+         <!--  <li>
             <a href="javascript:;">
               <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                <h4 class="control-sidebar-subheading">//////</h4>
 
-                <p>Will be 23 on April 24th</p>
+                <p>/////</p>
               </div>
             </a>
-          </li>
+          </li> -->
         </ul>
         <!-- /.control-sidebar-menu -->
 
+
         <h3 class="control-sidebar-heading">Tasks Progress</h3>
         <ul class="control-sidebar-menu">
-          <li>
+         <!--  <li>
             <a href="javascript:;">
               <h4 class="control-sidebar-subheading">
                 Custom Template Design
@@ -39,10 +41,10 @@
                 <div class="progress-bar progress-bar-danger" style="width: 20%"></div>
               </div>
             </a>
-          </li>
+          </li> -->
         </ul>
         <!-- /.control-sidebar-menu -->
-
+     
       </div>
       <!-- /.tab-pane -->
       <!-- Stats tab content -->
