@@ -1,0 +1,195 @@
+[33mcommit 638bd215890e88b6406760a657008d7fefac18ec[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Tue Nov 21 16:51:44 2017 +0200
+
+    Updated sidebar,menu, dashboard with User Type
+
+ .../admin/partials/control_sidebar.blade.php       | 16 [32m+++++[m[31m-----[m
+ .../layouts/admin/partials/header_navbar.blade.php |  5 [32m++[m[31m--[m
+ .../layouts/admin/partials/sidebar_menu.blade.php  | 13 [32m+++++++[m[31m--[m
+ resources/views/manage/dashboard.blade.php         |  2 [32m+[m[31m-[m
+ resources/views/manage/myprofile/index.blade.php   | 34 [32m+++++++++++++[m[31m---------[m
+ 5 files changed, 45 insertions(+), 25 deletions(-)
+
+[33mcommit 565a4879d5e95c2dc0a36a8ff6a20aff104166ed[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Mon Nov 20 16:45:49 2017 +0200
+
+    Updated My profile to display User Type in sub-heading
+
+ resources/views/manage/myprofile/index.blade.php | 16 [32m++++++++++++[m[31m----[m
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+[33mcommit de62b005206033ffc43d5da581472b3fa2a51c90[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Mon Nov 20 14:55:07 2017 +0200
+
+    Updated My profile edit and added masking also the my referral add and edit pages
+
+ app/Http/Controllers/myProfileController.php       |   9 [32m++[m
+ app/Http/Controllers/myReferralController.php      |   6 [32m+[m[31m-[m
+ resources/views/manage/myprofile/index.blade.php   | 138 [32m++++++++++++++++++++[m[31m-[m
+ .../views/manage/myreferrals/create.blade.php      |  33 [32m++++[m[31m-[m
+ resources/views/manage/myreferrals/edit.blade.php  |  27 [32m+++[m[31m-[m
+ resources/views/manage/myreferrals/index.blade.php |   2 [32m+[m
+ resources/views/manage/myreferrals/show.blade.php  |   4 [32m+[m
+ 7 files changed, 201 insertions(+), 18 deletions(-)
+
+[33mcommit 8563b09f8b861f239acf47a668fd2be16fb95d2e[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Mon Nov 20 09:14:21 2017 +0200
+
+    removed unique entry for ID number for MyReferral and made email unique
+
+ app/Http/Controllers/myReferralController.php       | 4 [32m++[m[31m--[m
+ resources/views/manage/myreferrals/create.blade.php | 4 [32m++[m[31m--[m
+ resources/views/manage/myreferrals/edit.blade.php   | 8 [32m++++[m[31m----[m
+ 3 files changed, 8 insertions(+), 8 deletions(-)
+
+[33mcommit bfcc77d18f4e0bd1af5c92c5e8ec2e03cc105d85[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Mon Nov 20 08:42:48 2017 +0200
+
+    updated sidebar to included agent view for My referrals
+
+ resources/views/layouts/admin/partials/sidebar_menu.blade.php | 2 [32m+[m[31m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[33mcommit 6023836e5674b99660e67f617a7b9f9a949f260c[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Fri Nov 17 16:11:46 2017 +0200
+
+    tweaked routes and setup for new user registration role assignment
+
+ app/Http/Controllers/Auth/LoginController.php      |  2 [32m+[m[31m-[m
+ app/Http/Controllers/Auth/RegisterController.php   | 46 [32m++++++++++++++++++[m[31m---[m
+ app/Http/Controllers/DashboardController.php       |  2 [32m+[m
+ app/Http/Controllers/HomeController.php            | 47 [32m++++++++++++++++++++[m[31m--[m
+ app/Http/Controllers/UserController.php            |  2 [32m+[m
+ app/Http/Middleware/RedirectIfAuthenticated.php    |  1 [32m+[m
+ app/User.php                                       |  2 [32m+[m[31m-[m
+ resources/views/auth/login.blade.php               |  2 [32m+[m[31m-[m
+ resources/views/auth/register.blade.php            | 10 [32m++[m[31m---[m
+ .../layouts/admin/partials/sidebar_menu.blade.php  |  2 [32m+[m[31m-[m
+ resources/views/manage/dashboard.blade.php         |  2 [32m+[m[31m-[m
+ routes/web.php                                     | 22 [32m++++++[m[31m----[m
+ 12 files changed, 115 insertions(+), 25 deletions(-)
+
+[33mcommit 00ea0617a15f94de19a2dc3081769b7bfbd58eef[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Tue Nov 14 16:58:51 2017 +0200
+
+    updating register page for registration type
+
+ resources/views/auth/register.blade.php | 31 [32m+++++++++++++++++++++++++++[m[31m----[m
+ 1 file changed, 27 insertions(+), 4 deletions(-)
+
+[33mcommit ff21545599ebc17be3adc05e0017e504f78b28c2[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Tue Nov 14 16:31:10 2017 +0200
+
+    updated referrals migration file - id number nullable
+
+ database/migrations/2017_10_18_155025_create_referrals_table.php | 2 [32m+[m[31m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[33mcommit 26125f36b438a7fd41cd3601a008f1aafe5427ff[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Tue Nov 14 16:25:41 2017 +0200
+
+    added create company table migration
+
+ .../2017_11_14_154855_create_companys_table.php    | 44 [32m++++++++++++++++++++++[m
+ 1 file changed, 44 insertions(+)
+ create mode 100644 database/migrations/2017_11_14_154855_create_companys_table.php
+
+[33mcommit 3715bb9ad0c5857f9973ce686a8c810fe4c2c44d[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Tue Nov 14 15:41:33 2017 +0200
+
+    updated the laratrust seeder and user migration and excel settings
+
+ app/Providers/AppServiceProvider.php                         |  2 [32m++[m
+ config/excel.php                                             |  8 [32m++++[m[31m----[m
+ config/laratrust_seeder.php                                  | 12 [32m++++++++++++[m
+ database/migrations/2014_10_12_000000_create_users_table.php |  9 [32m+++++++++[m
+ .../migrations/2017_10_18_155025_create_referrals_table.php  |  4 [32m++[m[31m--[m
+ 5 files changed, 29 insertions(+), 6 deletions(-)
+
+[33mcommit 16c769100160cec7197b8ecdbd4ab2cfcbe81a75[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Mon Nov 13 16:22:00 2017 +0200
+
+    Tweaked the dashboard page & changed the referral email link to redirect to register page
+
+ app/Http/Controllers/DashboardController.php       | 122 [32m+++++++++++++++++++++[m
+ app/Http/Controllers/HomeController.php            |   2 [32m+[m[31m-[m
+ app/Http/Controllers/ManageController.php          |   2 [32m+[m[31m-[m
+ app/Http/Controllers/myProfileController.php       |  10 [32m+[m[31m-[m
+ app/Http/Controllers/myReferralController.php      |  16 [32m+[m[31m--[m
+ resources/views/auth/register.blade.php            |   2 [32m+[m
+ resources/views/emails/referralAdded.blade.php     |   2 [32m+[m[31m-[m
+ .../layouts/admin/partials/sidebar_menu.blade.php  |   2 [32m+[m[31m-[m
+ resources/views/manage/dashboard.blade.php         |  40 [32m+++[m[31m----[m
+ resources/views/manage/myprofile/index.blade.php   |  10 [32m+[m[31m-[m
+ routes/web.php                                     |   7 [32m+[m[31m-[m
+ 11 files changed, 175 insertions(+), 40 deletions(-)
+ create mode 100644 app/Http/Controllers/DashboardController.php
+
+[33mcommit 1ce110327e304f3f3484aff7e47fe3686e1b752d[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Mon Nov 13 11:29:35 2017 +0200
+
+    added feature to accept and decline from email
+
+ app/Http/Controllers/myReferralController.php      | 59 [32m++++++++++++++++++++[m[31m--[m
+ app/Mail/ReferralAdded.php                         |  6 [32m++[m[31m-[m
+ resources/views/emails/referralAdded.blade.php     | 27 [32m+++++[m[31m-----[m
+ .../views/manage/myreferrals/create.blade.php      |  2 [32m+[m[31m-[m
+ resources/views/manage/myreferrals/show.blade.php  |  4 [32m+[m[31m-[m
+ routes/web.php                                     | 12 [32m+++[m[31m--[m
+ 6 files changed, 84 insertions(+), 26 deletions(-)
+
+[33mcommit b9dbfbe4a42a03144169a2b1c2277ea95081f839[m
+Author: briansmith80 <info@creativestudio.co.za>
+Date:   Sat Nov 11 09:31:43 2017 +0200
+
+    testing Email Mailables markdown
+
+ app/Mail/ReferralAdded.php                       | 21 [32m++++++++++++++[m
+ app/Mail/Registerwelcome.php                     | 35 [32m++++++++++++++++++++++++[m
+ resources/views/emails/referralAdded.blade.php   | 15 [32m+++++++++[m[31m-[m
+ resources/views/emails/registerwelcome.blade.php | 12 [32m++++++++[m
+ routes/web.php                                   |  5 [32m++++[m
+ 5 files changed, 87 insertions(+), 1 deletion(-)
+ create mode 100644 app/Mail/Registerwelcome.php
+ create mode 100644 resources/views/emails/registerwelcome.blade.php
+
+[33mcommit f67baf75fdf925f151f9ad426d040ee6224f00bf[m
+Author: briansmith80 <info@creativestudio.co.za>
+Date:   Sat Nov 11 08:37:03 2017 +0200
+
+    get the referral data for the last inserted referral and email the referral
+
+ app/Http/Controllers/myReferralController.php  | 17 [32m+++++++++++++[m[31m----[m
+ app/Mail/ReferralAdded.php                     | 12 [32m++++++[m[31m------[m
+ resources/views/emails/referralAdded.blade.php |  8 [32m++++++[m[31m--[m
+ 3 files changed, 25 insertions(+), 12 deletions(-)
+
+[33mcommit 2c264e23533a0bbc5102905fae4899de013cc602[m
+Author: Brian Smith <info@creativestudio.co.za>
+Date:   Fri Nov 10 16:29:40 2017 +0200
+
+    added mailable Referral Added - to test the mailing function.
+
+ app/Http/Controllers/myReferralController.php      |  8 [32m++++[m
+ app/Mail/ReferralAdded.php                         | 44 [32m++++++++++++++++++++++[m
+ app/Profile.php                                    | 40 [32m++++++++++++++++++++[m
+ resources/views/emails/referralAdded.blade.php     |  6 [32m+++[m
+ .../views/layouts/admin/ReferralAdded.blade.php    |  1 [32m+[m
+ resources/views/manage/myreferrals/index.blade.php |  1 [31m-[m
+ 6 files changed, 99 insertions(+), 1 deletion(-)
+ create mode 100644 app/Mail/ReferralAdded.php
+ create mode 100644 app/Profile.php
+ create mode 100644 resources/views/emails/referralAdded.blade.php
+ create mode 100644 resources/views/layouts/admin/ReferralAdded.blade.php

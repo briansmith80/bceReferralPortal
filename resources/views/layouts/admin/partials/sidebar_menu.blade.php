@@ -18,6 +18,14 @@
                   Refer a Friend
                 @elseif (Auth::user()->usertype == 5)
                   Estate Agent
+                @elseif (Auth::user()->usertype == 4)
+                  User
+                @elseif (Auth::user()->usertype == 3)
+                  Member
+                @elseif (Auth::user()->usertype == 2)
+                  Administrator
+                @elseif (Auth::user()->usertype == 1)
+                  Superadministrator   
                 @else
                   No user type :-(
                 @endif
