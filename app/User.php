@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Referral');
     }
+
+     public function link2()
+    {
+        return $this->hasMany('App\Company');
+    }
 }

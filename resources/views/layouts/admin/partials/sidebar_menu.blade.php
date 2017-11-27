@@ -14,13 +14,17 @@
           <!-- Status -->
           <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
             <small class="text-muted text-center">
-                @if (Auth::user()->usertype == 6)
+                <!-- // Display current user roles -->
+                @foreach (Auth::user()->roles as $role)
+                {{ $role->display_name }}
+                @endforeach
+                <!-- @if (Auth::user()->usertype == 6)
                   Refer a Friend
                 @elseif (Auth::user()->usertype == 5)
                   Estate Agent
                 @else
                   No user type :-(
-                @endif
+                @endif -->
             </small>
         </div>
       </div>
@@ -43,12 +47,12 @@
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
-        @role('administrator|member|user|friend|agent')
+        @role('superadministrator|administrator|member|user|friend|agent')
         
         <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Calendar</span></a></li> -->
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-users"></i> <span>My Referrals</span>
+          <a href="#"><i class="fa fa-paper-plane"></i> <span>My Referrals</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -61,12 +65,30 @@
 
         @endrole
 
+        @role('superadministrator|administrator|member|user|supplier')
+        
+        <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Calendar</span></a></li> -->
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-building"></i> <span>My Business</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('mycompany.index')}}"><i class="fa fa-eye"></i> <span>View Business</span></a></li>
+            <li><a href="{{route('mycompany.create')}}"><i class="fa fa-plus-square"></i> <span>New Business</span></a></li>
+          </ul>
+        </li>
+
+        @endrole
+
 
         @role('superadministrator|administrator')
         <li class="header">ADMINISTRATOR MENU</li>
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-user-plus"></i> <span>Manage Referrals</span>
+          <a href="#"><i class="fa fa-paper-plane"></i> <span>Manage Referrals</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -74,6 +96,18 @@
           <ul class="treeview-menu">
             <li><a href="{{route('referrals.index')}}">View Referrals</a></li>
             <li><a href="{{route('referrals.create')}}">Create New Referral</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-building"></i> <span>Manage Business</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('companies.index')}}">View Business</a></li>
+            <li><a href="{{route('companies.create')}}">Create New Business</a></li>
           </ul>
         </li>
 

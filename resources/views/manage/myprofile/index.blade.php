@@ -45,13 +45,9 @@
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h3>
               <p class="text-muted text-center">
-                @if (Auth::user()->usertype == 6)
-                  Refer a Friend
-                @elseif (Auth::user()->usertype == 5)
-                  Estate Agent
-                @else
-                  No user type :-(
-                @endif
+                @foreach ($user->roles as $role)
+                {{ $role->display_name }}
+                @endforeach
               </p>  
               <p class="text-muted text-center">{{ Auth::user()->email }}</p>
 
@@ -133,14 +129,14 @@
 
                  <li class="list-group-item">
                   <b>Registered Type</b> <a class="pull-right">
-                  @if (Auth::user()->usertype == 6)
-                    Refer a Friend
-                  @elseif (Auth::user()->usertype == 5)
-                    Estate Agent
-                  @else
-                    No user type :-(
-                  @endif
-                  ({{ Auth::user()->usertype }})
+                 {{-- $user->roles --}}
+
+                @foreach ($user->roles as $role)
+                {{ $role->display_name }}
+                @endforeach
+                
+                ({{ Auth::user()->usertype }})
+
                   </a>
                 </li>
                 <li class="list-group-item">
@@ -152,7 +148,7 @@
               </ul>
                   
                 </form>
-
+                
               </div>
               <!-- /.tab-pane -->
               

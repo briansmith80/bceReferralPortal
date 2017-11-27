@@ -26,9 +26,9 @@ Route::get('/', 'HomeController@index')->name('/');
 //     return redirect('/manage/dashboard');
 // });
 
-// Route::get('/admin_example', function () {
-// 	return view('admin_template');
-// });
+// All access to my profile
+Route::resource('/myprofile', 'myProfileController',  ['except' => ['create', 'store', 'show', 'destroy' ]]);
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
  // admin access
 Route::prefix('manage')->middleware('role:superadministrator|administrator|')->group(function () {
@@ -36,48 +36,39 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|')->g
 	Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
 	Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
 	Route::resource('/referrals', 'ReferralController', ['except' => 'destroy']);
+  Route::resource('/companies', 'CompanyController');
+  // Export data to Excel 
+  Route::get('referrals/excel', ['as' => 'referrals.excel', 'uses' => 'ReferralController@excel']);
+  // Export data to CSV 
+  Route::get('referrals/csv', ['as' => 'referrals.csv', 'uses' => 'ReferralController@csv']);
+  // Export data to Excel 
+  Route::get('companies/excel', ['as' => 'companies.excel', 'uses' => 'CompanyController@excel']);
+  // Export data to CSV 
+  Route::get('companies/csv', ['as' => 'companies.csv', 'uses' => 'CompanyController@csv']);
 });
-  // normal access
-Route::prefix('manage')->middleware('role:superadministrator|administrator|member|user|friend|agent|supplier')->group(function () {
-	//Route::get('/', 'ManageController@index');
- // Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
-  Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+  // friend / agent  access
+Route::prefix('manage')->middleware('role:superadministrator|administrator|member|user|friend|agent')->group(function () {
   Route::resource('/myreferrals', 'myReferralController');
-  Route::resource('/myprofile', 'myProfileController',  ['except' => ['create', 'store', 'show', 'destroy' ]]);
+  // Export data to Excel 
+  Route::get('myreferrals/excel', ['as' => 'myreferrals.excel', 'uses' => 'myReferralController@excel']);
+  // Export data to CSV 
+  Route::get('myreferrals/csv', ['as' => 'myreferrals.csv', 'uses' => 'myReferralController@csv']);
+});
+
+  // supplier  access
+Route::prefix('manage')->middleware('role:superadministrator|administrator|member|user|supplier')->group(function () {
+  Route::resource('/mycompany', 'myCompanyController');
+  // Export data to Excel 
+  Route::get('mycompany/excel', ['as' => 'mycompany.excel', 'uses' => 'myCompanyController@excel']);
+  // Export data to CSV 
+  Route::get('mycompany/csv', ['as' => 'mycompany.csv', 'uses' => 'myCompanyController@csv']);
 });
 
 // reffered user to accept referral
 //Route::get('/changerole/{id}', 'UserController@changerole')->name('changerole');
 
-// reffered user to accept referral
+// referred user to accept referral
 Route::get('/accept/{id}', 'myReferralController@accept')->name('accept');
-
-// reffered user to decline referral
+// referred user to decline referral
 Route::get('/decline/{id}', 'myReferralController@decline')->name('decline');
 
-
-// Export data to Excel 
-Route::get('referrals/excel', 
-[
-  'as' => 'referrals.excel',
-  'uses' => 'ReferralController@excel'
-]);
-
-// Export data to Excel 
-Route::get('myreferrals/excel', 
-[
-  'as' => 'myreferrals.excel',
-  'uses' => 'myReferralController@excel'
-]);
-// Export data to CSV 
-Route::get('myreferrals/csv', 
-[
-  'as' => 'myreferrals.csv',
-  'uses' => 'myReferralController@csv'
-]);
-// Export data to CSV 
-Route::get('referrals/csv', 
-[
-  'as' => 'referrals.csv',
-  'uses' => 'ReferralController@csv'
-]);

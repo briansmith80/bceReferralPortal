@@ -113,9 +113,11 @@ class myReferralController extends Controller
      */
     public function show($id)
     {
+        
+
         //
         $referrals = Referral::findOrFail($id);
-        return view("manage.myreferrals.show")->withReferrals($referrals);
+        return view("manage.myreferrals.show")->withReferrals($referrals)->withuser($user);
 
     }
 
@@ -130,7 +132,7 @@ class myReferralController extends Controller
         // get all users
         $users = User::all();
         //dd($users);
-
+       
         // get the user_id from input (referral/user_id) get User from value
        // $user_id = Referral::get('user_id');
        // $subcategories = User::where('id','=',$user_id)->get();

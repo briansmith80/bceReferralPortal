@@ -46,6 +46,9 @@ class DashboardController extends Controller
             // 
             $user = User::where('id', $id)->first();   
             //$referrals = Referral::all();
+            
+            
+
             //dd($referrals_completed);
             return view('manage.dashboard')->withReferrals($referrals)->with('total', $referrals_total)->withUser($user)->with('pending', $referrals_pending)->with('accepted', $referrals_accepted)->with('declined', $referrals_declined)->with('completed', $referrals_completed);
             //echo 'index';
