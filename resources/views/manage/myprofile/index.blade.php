@@ -155,16 +155,12 @@
 
                  <li class="list-group-item">
                   <b>Registered Type</b> <a class="pull-right">
-<<<<<<< HEAD
+
                  {{-- $user->roles --}}
 
-                @foreach ($user->roles as $role)
-                {{ $role->display_name }}
-                @endforeach
-                
-                ({{ Auth::user()->usertype }})
+               
 
-=======
+
                   @if (Auth::user()->usertype == 6)
                     Refer a Friend
                   @elseif (Auth::user()->usertype == 5)
@@ -181,7 +177,7 @@
                     No user type :-(
                   @endif
                   ({{ Auth::user()->usertype }})
->>>>>>> 7404854271c84f61fbe4ad426fa99d17e90ebea0
+
                   </a>
                 </li>
                 <li class="list-group-item">

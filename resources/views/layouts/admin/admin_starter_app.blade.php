@@ -18,6 +18,9 @@
 <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('bower_components/adminLTE/plugins/select2/select2.min.css') }}">
 
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{ asset('bower_components/adminLTE/plugins/iCheck/all.css') }}">
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('bower_components/adminLTE/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter

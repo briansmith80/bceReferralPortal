@@ -64,7 +64,7 @@ class CompanyController extends Controller
       $companies->landline_number = $request->landline_number;
       $companies->mobile_number = $request->mobile_number;
       // $companies->product_services = $request->product_services;
-      $companies->product_services = implode(',', $request->product_services);
+      // $companies->product_services = implode(',', $request->product_services);
       $companies->company_type = $request->company_type;
       $companies->description = $request->description;
       $companies->registration_no = $request->registration_no;

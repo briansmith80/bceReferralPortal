@@ -78,10 +78,10 @@
                     <th>Mobile Number</th>
                     <td>{{$companies->mobile_number}}</td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <th>Services</th>
                     <td>{{$companies->product_services}}</td>
-                  </tr>
+                  </tr> -->
                   <tr>
                     <th>Type</th>
                     <td>{{$companies->company_type}}</td>
