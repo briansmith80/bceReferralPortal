@@ -103,10 +103,8 @@
                     <td>{{$companies->physical_address}}</td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td>
-                    
-                    </td>
+                    <th>Updated on</th>
+                    <td>{{$companies->updated_at->toFormattedDateString()}}</td>
                   </tr>
                   
                   

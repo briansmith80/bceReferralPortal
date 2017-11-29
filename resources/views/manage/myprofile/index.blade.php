@@ -53,11 +53,12 @@
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h3>
               <p class="text-muted text-center">
-<<<<<<< HEAD
+
                 @foreach ($user->roles as $role)
                 {{ $role->display_name }}
                 @endforeach
-=======
+
+                {{-- 
                 @if (Auth::user()->usertype == 6)
                   Refer a Friend
                 @elseif (Auth::user()->usertype == 5)
@@ -73,7 +74,7 @@
                 @else
                   No user type :-(
                 @endif
->>>>>>> 7404854271c84f61fbe4ad426fa99d17e90ebea0
+                  --}}
               </p>  
               <p class="text-muted text-center">{{ Auth::user()->email }}</p>
 

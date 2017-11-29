@@ -50,7 +50,7 @@
                   <th>Product Services</th>
                   <th>Business Type</th>
                   <th>Date Created</th>
-                  <!-- <th></th> -->
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
