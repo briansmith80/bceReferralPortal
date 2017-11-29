@@ -12,6 +12,7 @@ use Session;
 use Hash;
 
 
+
 class myProfileController extends Controller
 {
     /**
@@ -120,6 +121,7 @@ class myProfileController extends Controller
         'name' => 'required|max:255',
         'email' => 'required|email|unique:users,email,'.$id
       ]);
+        
 
       $user = User::findOrFail($id);
       $user->name = $request->name;
@@ -131,8 +133,32 @@ class myProfileController extends Controller
       $user->dob = $request->dob;
       $user->agency = $request->agency;
       $user->ffc_number = $request->ffc_number;
-      $user->ffc_upload = $request->ffc_upload;
 
+      if ($request->hasFile('ffc_upload')) 
+        {
+            // get the file attributes
+            $file = $request->ffc_upload;
+            // build a unique time-name to prevent same name upload overite issues
+            $name = time() . '-' . $file->getClientOriginalName(); 
+
+                // return [
+                //     'path'      =>  $file->getRealPath(),
+                //     'size'      =>  $file->getSize(),
+                //     'mime'      =>  $file->getMimeType(),
+                //     'name'      =>  $file->getClientOriginalName(),
+                //     'extention' =>  $file->getClientOriginalExtention();
+                // ];
+            
+            // $file = $file->move(public_path() .'/upload/', time() . '-' . $file->getClientOriginalName());
+            
+            // move file to Public Path / Upload folder - rename the file with timestamp - orginal name
+            //$file = $file->move(public_path() .'/uploads/ffc_uploads/', time() . '-' . $name);
+            $file = $file->move(public_path() .'/uploads/ffc_uploads/', $name);
+            // save the built up time-name to the database
+            $user->ffc_upload = $name;
+        }
+        // $user->ffc_upload = $request->ffc_upload;
+        //dd($user);
       if ($request->password_options == 'auto') {
         $length = 10;
         $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';

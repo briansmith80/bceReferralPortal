@@ -48,7 +48,11 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="https://placehold.it/160x160/7F00FF/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" alt="{{ Auth::user()->name }} profile picture">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="https://placehold.it/160x160/7F00FF/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" alt="{{ Auth::user()->name }} profile picture"> -->
+              <!-- robohash: a generated robot with different colors, faces, etc -->
+              <!-- mm: (mystery-man) a simple, cartoon-style silhouetted outline of a person (does not vary by email hash) -->
+              <!-- 404: do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found) response -->
+              <img class="profile-user-img img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm" alt="{{ Auth::user()->name }} profile picture">
 
 
               <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h3>
@@ -150,7 +154,13 @@
                   <b>FFC Number</b> <a class="pull-right">{{ Auth::user()->ffc_number }}</a>
                 </li>
                  <li class="list-group-item">
-                  <b>FFC Proof/Doc</b> <a class="pull-right">{{ Auth::user()->ffc_upload }}</a>
+                  @isset(Auth::user()->ffc_upload)
+                  <b>FFC Proof/Doc</b> <a href="{{ asset('uploads/ffc_uploads/' . Auth::user()->ffc_upload) }}" class="pull-right" target="_blank">View file: ({{ Auth::user()->ffc_upload }})</a>
+                  <img src="{{ asset('uploads/ffc_uploads/' . Auth::user()->ffc_upload) }}" width="250px">
+                  @endisset
+                  @empty(Auth::user()->ffc_upload)
+                      <b>FFC Proof/Doc</b> <a class="pull-right"><i class="fa fa-fw fa-exclamation-triangle "></i> No file</a>
+                  @endempty
                 </li>
                 @endrole
 
@@ -158,9 +168,6 @@
                   <b>Registered Type</b> <a class="pull-right">
 
                  {{-- $user->roles --}}
-
-               
-
 
                   @if (Auth::user()->usertype == 6)
                     Refer a Friend
@@ -196,7 +203,7 @@
               
               <div class="tab-pane" id="updateprofile">
                 
-                <form class="form-horizontal" role="form" action="{{ route('myprofile.update', $user->id) }}" method="POST">
+                <form class="form-horizontal" role="form" action="{{ route('myprofile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                   {{method_field('PUT')}}
                   {{csrf_field()}}
                   <div class="form-group">

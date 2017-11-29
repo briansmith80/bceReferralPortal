@@ -6,7 +6,9 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="https://placehold.it/160x160/00abac/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" class="img-circle" alt="{{ Auth::user()->name }}">
+          <!-- <img src="https://placehold.it/160x160/00abac/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" class="img-circle" alt="{{ Auth::user()->name }}"> -->
+          <img src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm" class="img-circle" alt="{{ Auth::user()->name }}">
+          
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }} {{ Auth::user()->surname }} </p>
