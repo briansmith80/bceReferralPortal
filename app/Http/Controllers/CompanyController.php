@@ -48,7 +48,7 @@ class CompanyController extends Controller
         //
         $this->validate($request, [
         'user_id' => 'required|max:20',
-        'company_name' => 'required|max:255',
+        'company_name' => 'required|unique:companies|max:255',
         //'lastname' => 'required|max:255',
         'email' => 'required|max:100|email',
         // 'ID_number' => 'required|max:100'
@@ -71,6 +71,19 @@ class CompanyController extends Controller
       $companies->vat_registered = $request->vat_registered;
       $companies->years_operated = $request->years_operated;
       $companies->physical_address = $request->physical_address;
+
+         if ($request->hasFile('product_services')) {
+            // get the file attributes
+            $file = $request->product_services;
+            // build a unique time-name to prevent same name upload overite issues
+            // $name = time() . '-' . $request->company_name;
+            $slug = str_slug($request->company_name, '-');
+            $name = time() . '-' . $slug . '.' . $file->getClientOriginalExtension();
+            // move file to Public Path / Upload folder - rename the file with timestamp - orginal name
+            $file = $file->move(public_path() .'/uploads/business_logos/', $name);
+            $companies->product_services = $name;
+            }
+
       $companies->save();
       //dd($companies);
       // if ($request->permissions) {

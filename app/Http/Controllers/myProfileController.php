@@ -146,7 +146,7 @@ class myProfileController extends Controller
                 //     'size'      =>  $file->getSize(),
                 //     'mime'      =>  $file->getMimeType(),
                 //     'name'      =>  $file->getClientOriginalName(),
-                //     'extention' =>  $file->getClientOriginalExtention();
+                //     'extention' =>  $file->getClientOriginalExtension();
                 // ];
             
             // $file = $file->move(public_path() .'/upload/', time() . '-' . $file->getClientOriginalName());

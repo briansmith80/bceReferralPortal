@@ -36,7 +36,7 @@
             <!-- /.box-header -->
             <!-- form start -->
       
-            <form action="{{ route('companies.store') }}" role="form" method="POST">
+            <form action="{{ route('companies.store') }}" role="form" method="POST" enctype="multipart/form-data">
             
             {{ csrf_field() }}
             
@@ -269,8 +269,13 @@
                     <label>No
                       <input type="radio" name="vat_registered" value="No" class="square-blue">
                     </label>
-
                   
+                </div>
+
+                <div class="form-group">
+                  <label for="discription">Upload Logo</label>
+                  <!-- <input type="file" class="form-control" id="product_services" name="product_services" value="{{ old('product_services') }}"> -->
+                  <input type="file" class="form-control" id="product_services" name="product_services" placeholder="FFC Proof">
                 </div>
 
               </div>

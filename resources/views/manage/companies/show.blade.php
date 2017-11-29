@@ -95,12 +95,20 @@
                     <td>{{$companies->vat_registered}}</td>
                   </tr>
                   <tr>
-                    <th>Years Operated</th>
+                    <th>Established</th>
                     <td>{{$companies->years_operated}}</td>
                   </tr>
                   <tr>
                     <th>Address</th>
                     <td>{{$companies->physical_address}}</td>
+                  </tr>
+                  <tr>
+                    <th>Logo</th>
+                    <td>
+                      {{$companies->product_services}}
+                      <img src="{{ asset('uploads/business_logos/' . $companies->product_services) }}" width="250px">
+                     
+                    </td>
                   </tr>
                   <tr>
                     <th>Updated on</th>
