@@ -40,11 +40,11 @@ class myProfileController extends Controller
             $referrals_total = $referrals->count();
             
 
-
            //$referrals = DB::table('referrals')->where('user_id', $user_id);
             // 
             $user = User::where('id', $id)->first();   
             //$referrals = Referral::all();
+            
             
             // $roles = $user->roles;
             $roles = $user->roles()->get();

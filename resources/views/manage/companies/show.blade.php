@@ -105,14 +105,15 @@
                   <tr>
                     <th>Logo</th>
                     <td>
-                      {{$companies->product_services}}
-                      <img src="{{ asset('uploads/business_logos/' . $companies->product_services) }}" width="250px">
+                      <img src="{{ asset('uploads/business_logos/' . $companies->product_services) }}" width="200px"><br/>
+                      filename: <a href="{{ asset('uploads/business_logos/' . $companies->product_services) }}" target="_blank"> {{$companies->product_services}}</a><br>
+                      
                      
                     </td>
                   </tr>
                   <tr>
                     <th>Updated on</th>
-                    <td>{{$companies->updated_at->toFormattedDateString()}}</td>
+                    <td>{{$companies->updated_at->toFormattedDateString()}} - <i>{{$companies->updated_at->diffForHumans()}}</i></td>
                   </tr>
                   
                   

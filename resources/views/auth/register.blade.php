@@ -64,8 +64,8 @@
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="usertype" id="supplier" value="7" disabled="">
-                <del>Company Supplier</del>
+                <input type="radio" name="usertype" id="supplier" value="7">
+                Trade/Business
               </label>
             </div>
       </div>

@@ -276,6 +276,7 @@
                   <label for="discription">Upload Logo</label>
                   <!-- <input type="file" class="form-control" id="product_services" name="product_services" value="{{ old('product_services') }}"> -->
                   <input type="file" class="form-control" id="product_services" name="product_services" placeholder="FFC Proof">
+                  <p class="help-block">Only Images, types .jpg, .gif, .jpeg, .png</p>
                 </div>
 
               </div>
