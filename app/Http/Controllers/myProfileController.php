@@ -134,6 +134,20 @@ class myProfileController extends Controller
       $user->agency = $request->agency;
       $user->ffc_number = $request->ffc_number;
 
+      if ($request->hasFile('profilepic')) 
+        {
+            // get the file attributes
+            $file = $request->profilepic;
+            // build a unique time-name to prevent same name upload overite issues
+            $fullname = $request->name . '-' . $request->surname;
+            //$slug = str_slug($request->company_name, '-');
+            $name = time() . '-' . $fullname . '.' . $file->getClientOriginalExtension();
+            //$file = $file->move(public_path() .'/uploads/ffc_uploads/', time() . '-' . $name);
+            $file = $file->move(public_path() .'/uploads/profile/', $name);
+            // save the built up time-name to the database
+            $user->profilepic = $name;
+        }
+
       if ($request->hasFile('ffc_upload')) 
         {
             // get the file attributes

@@ -7,8 +7,16 @@
       <div class="user-panel">
         <div class="pull-left image">
           <!-- <img src="https://placehold.it/160x160/00abac/ffffff/&text={{ mb_substr(Auth::user()->name, 0, 1) }}" class="img-circle" alt="{{ Auth::user()->name }}"> -->
-          <img src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm" class="img-circle" alt="{{ Auth::user()->name }}">
-          
+          <!-- <img src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm" class="img-circle" alt="{{ Auth::user()->name }}"> -->
+          <img class="img-circle" 
+              @isset(Auth::user()->profilepic)
+              src="{{ asset('uploads/profile/' . Auth::user()->profilepic) }}"
+              @endisset
+              @empty(Auth::user()->profilepic)
+              src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm"
+              @endempty
+              alt="{{ Auth::user()->name }} profile ">
+
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }} {{ Auth::user()->surname }} </p>

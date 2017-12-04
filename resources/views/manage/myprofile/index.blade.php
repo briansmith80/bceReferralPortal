@@ -52,9 +52,15 @@
               <!-- robohash: a generated robot with different colors, faces, etc -->
               <!-- mm: (mystery-man) a simple, cartoon-style silhouetted outline of a person (does not vary by email hash) -->
               <!-- 404: do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found) response -->
-              <img class="profile-user-img img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm" alt="{{ Auth::user()->name }} profile picture">
-
-
+              
+              <img class="profile-user-img img-responsive img-circle" 
+              @isset(Auth::user()->profilepic)
+              src="{{ asset('uploads/profile/' . Auth::user()->profilepic) }}"
+              @endisset
+              @empty(Auth::user()->profilepic)
+              src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm"
+              @endempty
+              alt="{{ Auth::user()->name }} profile ">
               <h3 class="profile-username text-center">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h3>
               <p class="text-muted text-center">
 
@@ -123,6 +129,16 @@
                
                  
                  <ul class="list-group list-group-unbordered">
+                  <li class="list-group-item">
+                  <img class="profile-user-img img-responsive img-circle" 
+                    @isset(Auth::user()->profilepic)
+                    src="{{ asset('uploads/profile/' . Auth::user()->profilepic) }}"
+                    @endisset
+                    @empty(Auth::user()->profilepic)
+                    src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=mm"
+                    @endempty
+                    alt="{{ Auth::user()->name }} profile ">
+                </li>
                 <li class="list-group-item">
                   <b>Name</b> <a class="pull-right">{{ Auth::user()->name }}</a>
                 </li>
@@ -189,10 +205,11 @@
                   </a>
                 </li>
                 <li class="list-group-item">
-                  <b>Joined</b> <a class="pull-right">{{ Auth::user()->created_at->toCookieString()}}</a>
+                  <b>Joined</b> <a class="pull-right">{{ Auth::user()->created_at->toCookieString()}} / {{ Auth::user()->created_at->diffForHumans()}}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Updated</b> <a class="pull-right">{{ Auth::user()->updated_at->toDateTimeString()}}</a>
+                  <b>Updated</b> <a class="pull-right">{{ Auth::user()->updated_at->toDateTimeString()}} 
+                    / {{Auth::user()->updated_at->diffForHumans()}}</a>
                 </li>
               </ul>
                   
@@ -256,6 +273,13 @@
                     <label for="inputdob" class="col-sm-2 control-label">Date of Birth</label>
                     <div class="col-sm-10">
                       <input type="text" id="inputdob" name="dob" class="form-control" value="{{$user->dob}}" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask="">
+                    </div>
+                  </div>
+
+                   <div class="form-group">
+                    <label for="inputprofilepic" class="col-sm-2 control-label">Upload Profile Picture</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="inputprofilepic" name="profilepic" value="{{$user->profilepic}}">
                     </div>
                   </div>
 
