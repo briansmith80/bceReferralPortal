@@ -144,6 +144,7 @@ desired effect
 <script type="text/javascript">
 $('div.alert.alert-danger.alert-dismissible').not('.alert-important').delay(5000).slideUp(350);
 $('div.alert.alert-success.alert-dismissible').not('.alert-important').delay(5000).slideUp(350);
+$('div.alert.alert-warning.alert-dismissible').not('.alert-important').delay(5000).slideUp(350);
 </script>
 
  <!-- page script -->

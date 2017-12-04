@@ -12,12 +12,23 @@ class Company extends Model
      * Get the Refferrals for the user.
      */
 
+    public function companyhasOne()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function companyhasMany()
+    {
+        return $this->hasMany('App\Company');
+    }
+
+    //Company belongs to a user
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function companies()
+    public function link1()
     {
         return $this->hasMany('App\Company');
     }

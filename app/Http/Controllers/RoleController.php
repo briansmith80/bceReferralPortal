@@ -18,6 +18,7 @@ class RoleController extends Controller
     {
         //
         $roles = Role::all();
+        //dd($roles);
         return view('manage.roles.index')->withRoles($roles);
     }
 

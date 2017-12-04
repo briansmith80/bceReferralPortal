@@ -12,8 +12,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Business</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="#">Manage Business</a></li>
+        <li class="active">Add</li>
       </ol>
     </section>
 
@@ -249,7 +249,7 @@
 
                  <div class="form-group">
                   <label for="discription">Physical Address / Suburb</label>
-                  <input type="text" class="form-control" id="physical_address" name="physical_address" value="{{ old('physical_address') }}" placeholder="Enter Physical Address">
+                  <input type="text" class="form-control geocomplete" id="geocomplete" name="physical_address" value="{{ old('physical_address') }}" placeholder="Enter Physical Address">
                 </div>
 
                 <div class="form-group">
@@ -311,8 +311,24 @@
 <!-- iCheck 1.0.1 -->
 <script src="{{ asset('bower_components/adminLTE/plugins/iCheck/icheck.min.js') }}"></script>
 
+<!-- Google Maps API with the Places Library -->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3asHSAM3PSNRdDPp_X_yQne08gd_Xc84&components=country:ZA&region=&amp;libraries=places"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+
+<script src="{{ asset('js/jquery.geocomplete.min.js') }}"></script>
+
 <script>
+  // Google autocomplete address 
+  $(function(){
+    
+    $("#geocomplete").geocomplete()
+      .bind("geocode:result", function(event, result){
+      });
  
+  });
+</script>
+
+<script>
 
 $(function () {
     //Initialize Select2 Elements

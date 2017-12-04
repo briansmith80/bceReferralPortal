@@ -22,7 +22,7 @@ class UserController extends Controller
         //
         // $users = User::orderBy('id', 'desc')->paginate(10);
         $users = User::all();
-
+        //dd($users);
         return view('manage.users.index')->withUsers($users);
     }
 

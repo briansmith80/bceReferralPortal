@@ -172,10 +172,10 @@ class CompanyController extends Controller
     {
         //
         //
-        $comapnies = Company::findOrFail($id);
-        $comapnies->delete();
+        $companies = Company::findOrFail($id);
+        $companies->delete();
 
-        Session::flash('warning', 'Successfully deleted the business - ' . $comapnies->firstname . '.');
+        Session::flash('warning', 'Successfully deleted the business - ' . $companies->firstname . '.');
         return redirect()->route('companies.index', $id);
     }
 
@@ -208,7 +208,7 @@ class CompanyController extends Controller
         $paymentsArray = []; 
 
         // Define the Excel spreadsheet headers
-        $paymentsArray[] = ['ID','User ID', 'Firstname', 'Lastname', 'Email', 'Landline Number', 'Mobile Number', 'ID Number', 'Status', 'Date Signed', 'Date Paid', 'Created At', 'Date Modified'];
+        $paymentsArray[] = ['ID','User ID', 'Company Name', 'Email', 'Landline Number', 'Mobile Number', 'Website', 'Logo', 'Company Type', 'Description', 'Reg Number', 'Vat Reg', 'Year Est', 'Address', 'Created', 'Modified'];
         // Convert each member of the returned collection into an array,
         // and append it to the payments array.
         foreach ($payments as $payment) {
@@ -216,15 +216,12 @@ class CompanyController extends Controller
         }
 
         // Generate and return the spreadsheet
-        Excel::create('companies', function($excel) use ($paymentsArray) {
+        Excel::create('business', function($excel) use ($paymentsArray) {
 
             // Set the spreadsheet title, creator, and description
-            $excel->setTitle('companies');
+            $excel->setTitle('business');
             $excel->setCreator('eLan')->setCompany('eLan Property Group');
-            $excel->setDescription('companies');
-
-            
-            
+            $excel->setDescription('business');
 
             // Build the spreadsheet, passing in the payments array
             $excel->sheet('sheet1', function($sheet) use ($paymentsArray) {
@@ -248,17 +245,7 @@ class CompanyController extends Controller
      */
     public function csv()
     {
-        // Execute the query used to retrieve the data. In this example
-        // http://www.maatwebsite.nl/laravel-excel/docs
 
-        // $payments = Payment::join('users', 'users.id', '=', 'payments.id')
-        //     ->select(
-        //       'payments.id', 
-        //       \DB::raw("concat(users.first_name, ' ', users.last_name) as `name`"), 
-        //       'users.email', 
-        //       'payments.total', 
-        //       'payments.created_at')
-        //     ->get();
 
         $payments = Company::all();
         //dump($payments);
@@ -268,7 +255,7 @@ class CompanyController extends Controller
         $paymentsArray = []; 
 
         // Define the Excel spreadsheet headers
-        $paymentsArray[] = ['ID','User ID', 'Firstname', 'Lastname', 'Email', 'Landline Number', 'Mobile Number', 'ID Number', 'Status', 'Date Signed', 'Date Paid', 'Created At', 'Date Modified'];
+        $paymentsArray[] = ['ID','User ID', 'Company Name', 'Email', 'Landline Number', 'Mobile Number', 'Website', 'Logo', 'Company Type', 'Description', 'Reg Number', 'Vat Reg', 'Year Est', 'Address', 'Created', 'Modified'];
         // Convert each member of the returned collection into an array,
         // and append it to the payments array.
         foreach ($payments as $payment) {
@@ -276,12 +263,12 @@ class CompanyController extends Controller
         }
 
         // Generate and return the spreadsheet
-        Excel::create('companies', function($excel) use ($paymentsArray) {
+        Excel::create('business', function($excel) use ($paymentsArray) {
 
             // Set the spreadsheet title, creator, and description
-            $excel->setTitle('companies');
+            $excel->setTitle('business');
             $excel->setCreator('eLan')->setCompany('eLan Property Group');
-            $excel->setDescription('companies');
+            $excel->setDescription('business');
 
             // Build the spreadsheet, passing in the payments array
             $excel->sheet('sheet1', function($sheet) use ($paymentsArray) {

@@ -43,6 +43,22 @@ class User extends Authenticatable
         return $this->hasMany('App\Company');
     }
 
-   
+    //A user has many Referrals
+    public function referrals()
+    {
+        return $this->hasMany('App\referral');
+    }
+
+    //A user has many Companies
+    public function companies()
+    {
+        return $this->hasMany('App\Company');
+    }
+
+
+    public function company()
+    {
+        return $this->belongsToMany('Company')->withTimestamps();
+    }
 
 }
