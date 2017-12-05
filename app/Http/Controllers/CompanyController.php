@@ -139,26 +139,51 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         //
+       // $user = User::find(1);
+         
+         //
         $this->validate($request, [
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'email' => 'required|max:100|email',
-            'ID_number' => 'required|max:100'
-        ]);
-          $companies = Company::findOrFail($id);
-          $companies->user_id = $request->user_id;
-          $companies->firstname = $request->firstname;
-          $companies->lastname = $request->lastname;
-          $companies->email = $request->email;
-          $companies->landline_number = $request->landline_number;
-          $companies->mobile_number = $request->mobile_number;
-          $companies->ID_number = $request->ID_number;
-          $companies->status = $request->status;
-          $companies->date_signed = $request->date_signed;
-          $companies->date_paid = $request->date_paid;
-          $companies->save();
+        'user_id' => 'required|max:20',
+        //'company_name' => 'required|unique:companies|max:255',
 
-        Session::flash('success', 'Updated the' . $companies->firstname . 'referral.');
+        //'company_name' => 'required|unique:companies,user_id,'.$user->id,
+        //'lastname' => 'required|max:255',
+        'email' => 'required|max:100|email',
+        // 'ID_number' => 'required|max:100'
+      ]);
+
+
+      $companies = new Company();
+      $companies->user_id = $request->user_id;
+      $companies->company_name = $request->company_name;
+      $companies->website_url = $request->website_url;
+      $companies->email = $request->email;
+      $companies->landline_number = $request->landline_number;
+      $companies->mobile_number = $request->mobile_number;
+      // $companies->product_services = $request->product_services;
+      // $companies->product_services = implode(',', $request->product_services);
+      $companies->company_type = $request->company_type;
+      $companies->description = $request->description;
+      $companies->registration_no = $request->registration_no;
+      $companies->vat_registered = $request->vat_registered;
+      $companies->years_operated = $request->years_operated;
+      $companies->physical_address = $request->physical_address;
+
+         if ($request->hasFile('product_services')) {
+            // get the file attributes
+            $file = $request->product_services;
+            // build a unique time-name to prevent same name upload overite issues
+            // $name = time() . '-' . $request->company_name;
+            $slug = str_slug($request->company_name, '-');
+            $name = time() . '-' . $slug . '.' . $file->getClientOriginalExtension();
+            // move file to Public Path / Upload folder - rename the file with timestamp - orginal name
+            $file = $file->move(public_path() .'/uploads/business_logos/', $name);
+            $companies->product_services = $name;
+            }
+
+      $companies->save();
+
+        Session::flash('success', 'Updated the' . $companies->company_name . 'business.');
         return redirect()->route('companies.show', $id);
     }
 

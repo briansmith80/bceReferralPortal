@@ -46,7 +46,7 @@
                
               <div class="col-md-6">
                 
-                <input type="hidden" id="user_id" name="user_id"  value="{{ Auth::user()->id }}">
+                <!-- <input type="hidden" id="user_id" name="user_id"  value="{{ Auth::user()->id }}"> -->
                 
                 <!-- <div class="form-group">
                   <label>Referral User</label>
