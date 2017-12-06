@@ -8,7 +8,7 @@
 <section class="content-header">
       <h1>
         Dashboard
-        <small>usertype: {{Auth::user()->usertype }}</small>
+        <small> </small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -25,7 +25,7 @@
             <div class="box-header with-border">
               <i class="fa fa-text-width"></i>
 
-              <h3 class="box-title">Total Referrels: {{$total}}</h3>
+              <h3 class="box-title">Dashboard</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -34,7 +34,16 @@
                   <div class="col-md-6">
                     
                     <h1>Welcome, {{ Auth::user()->name }}!</h1>
-                    <p class="lead">Thanks for becoming a member -- we're excited to have you on board! You can now use the <strong>bce</strong>Referral<strong>Portal</strong> platform to manage all of your outbound referrals. Use the links on the right to get started, and if you have any questions, please let us know!</p>
+                    <p class="lead">Thanks for becoming a member -- we're excited to have you on board!</p>
+                    
+                    @role('superadministrator|administrator|friend|agent')
+                    <p>You can now use the bce<strong>Portal</strong> platform to manage all of your outbound referrals. 
+                    Use the links on the right to get started, and if you have any questions, please let us know!</p>
+                    @endrole
+                    @role('superadministrator|administrator|member|user|supplier')
+                    <p>You can now use the bce<strong>Portal</strong> platform to manage all your Trading business. 
+                    Use the links on the right to get started, and if you have any questions, please let us know!</p>
+                    @endrole
 
                   </div>
                   <div class="col-md-6">
@@ -53,9 +62,15 @@
                            
                           <p>
                             <ul>
+                              @role('superadministrator|administrator|friend|agent')
                               <li><a href="{{route('myreferrals.create')}}">Add new Referrals</a> >></li>
-                              <li><a href="{{route('myprofile.index')}}">Update my Profile</a> >></li>
                               <li><a href="/myreferrals/excel">Export all your Referrals (.xlsx)</a> >> {{$total}}</li>
+                              @endrole
+                              @role('superadministrator|administrator|supplier')
+                              <li><a href="{{route('mycompany.create')}}">Add new Business</a> >></li>
+                              <li><a href="/mycompany/excel">Export all your Business (.xlsx)</a> >></li>
+                              @endrole
+                              <li><a href="{{route('myprofile.index')}}">Update my Profile</a> >></li>
                             </ul>
                           </p>
 
@@ -65,7 +80,8 @@
                   </div>
                   
                 </div>
-
+                
+                @role('superadministrator|administrator|friend|agent')
                 <div class="row">
 
                             <div class="col-lg-3 col-xs-6">
@@ -138,6 +154,12 @@
                             </div> 
 
                 </div>
+                @endrole
+
+                @role('superadministrator|administrator|member|user|supplier')
+                Supplier / Trader 
+                @endrole
+
 
             </div>
             <!-- /.box-body -->

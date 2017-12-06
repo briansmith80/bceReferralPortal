@@ -1,18 +1,18 @@
 @extends('layouts.admin.admin_starter_app')
 
-@section('title', 'Referral')
+@section('title', 'Business')
 
 @section('pageHeader')
     @parent
 
       <section class="content-header">
       <h1>
-       Manage My Referral
+       Manage My Business
         <small>View Details</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="#">Manage My Referral</a></li>
+        <li><a href="#">Manage Business</a></li>
         <li class="active">View Details</li>
       </ol>
     </section>
@@ -34,16 +34,16 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">My Referrals Detailed Info </h3>
+              <h3 class="box-title">My Business Detailed Info </h3>
               <br><br>
               <div class="box-tools">
                 
                 <div class="btn-group pull-right">
                        
-                      <a class="btn btn-default" href="{{route('myreferrals.index')}}"><i class="fa fa-eye"></i> View All</a> 
-                      <a class="btn btn-default" href="{{route('myreferrals.edit', $referrals->id)}}"><i class="fa fa-edit"></i> Edit</a>
-                      <a class="btn btn-danger" href="{{route('myreferrals.destroy', $referrals->id)}}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"><i class="fa fa-trash-o"></i> </a>
-                      <form id="delete-form" action="{{route('myreferrals.destroy', $referrals->id)}}" method="POST" style="display: none;">
+                      <a class="btn btn-default" href="{{route('mycompany.index')}}"><i class="fa fa-eye"></i> View All</a> 
+                      <a class="btn btn-default" href="{{route('mycompany.edit', $companies->id)}}"><i class="fa fa-edit"></i> Edit</a>
+                      <a class="btn btn-danger" href="{{route('mycompany.destroy', $companies->id)}}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"><i class="fa fa-trash-o"></i> </a>
+                      <form id="delete-form" action="{{route('mycompany.destroy', $companies->id)}}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                     </form>
@@ -56,58 +56,64 @@
                 <tbody>
                   <tr>
                     <th>Entry Date</th>
-                    <td>{{$referrals->created_at->toFormattedDateString()}}</td>
+                    <td>{{$companies->created_at->toFormattedDateString()}}</td>
                   </tr>
                   <tr>
-                    <th>First Name</th>
-                    <td>{{$referrals->firstname}}</td>
+                    <th>Business Name</th>
+                    <td>{{$companies->company_name}}</td>
                   </tr>
                   <tr>
-                    <th>Last Name</th>
-                    <td>{{$referrals->lastname}}</td>
+                    <th>Website</th>
+                    <td>{{$companies->website_url}}</td>
                   </tr>
                   <tr>
                     <th>Email</th>
-                    <td>{{$referrals->email}}</td>
+                    <td>{{$companies->email}}</td>
                   </tr>
                   <tr>
                     <th>Land Line Number</th>
-                    <td>{{$referrals->landline_number}}</td>
+                    <td>{{$companies->landline_number}}</td>
                   </tr>
                   <tr>
                     <th>Mobile Number</th>
-                    <td>{{$referrals->mobile_number}}</td>
+                    <td>{{$companies->mobile_number}}</td>
                   </tr>
+                  <!-- <tr>
+                    <th>Services</th>
+                    <td>{{$companies->product_services}}</td>
+                  </tr> -->
                   <tr>
-                    <th>ID Number</th>
-                    <td>{{$referrals->ID_number}}</td>
-                  </tr>
-                  <tr>
-                    <th>Status</th>
-                    <td>{{$referrals->status}}</td>
+                    <th>Type</th>
+                    <td>{{$companies->company_type}}</td>
                   </tr>
                    <tr>
-                    <th>Date Signed</th>
-                    <td>{{$referrals->date_signed}}</td>
+                    <th>Description</th>
+                    <td>{{$companies->description}}</td>
                   </tr>
                    <tr>
-                    <th>Date Paid</th>
-                    <td>{{$referrals->date_paid}}</td>
+                    <th>Vat Registered</th>
+                    <td>{{$companies->vat_registered}}</td>
                   </tr>
                   <tr>
-                    <td></td>
+                    <th>Established</th>
+                    <td>{{$companies->years_operated}}</td>
+                  </tr>
+                  <tr>
+                    <th>Address</th>
+                    <td>{{$companies->physical_address}}</td>
+                  </tr>
+                  <tr>
+                    <th>Logo</th>
                     <td>
-                    <!-- <a class="btn btn-default" href="{{route('myreferrals.index')}}"><i class="fa fa-chevron-left"></i> Back</a> 
-                    <a class="btn btn-default" href="{{route('myreferrals.edit', $referrals->id)}}"><i class="fa fa-edit"></i> Edit</a>
-                    <a class="btn btn-default" disabled href="#"><i class="fa fa-remove"></i> Delete</a> -->
-
-                   
-                      <!-- <div class="btn-group">
-                      <form action="{{route('myreferrals.destroy', $referrals->id)}}" method="POST">{{ csrf_field() }}{{ method_field('DELETE') }} 
-                      <a class="btn btn-default" href="{{route('myreferrals.index')}}"><i class="fa fa-eye"></i> View All </a> 
-                      <a class="btn btn-default" href="{{route('myreferrals.edit', $referrals->id)}}"><i class="fa fa-edit"></i> Edit</a>
-                      <button class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></form> -->
+                      <img src="{{ asset('uploads/business_logos/' . $companies->product_services) }}" width="200px"><br/>
+                      filename: <a href="{{ asset('uploads/business_logos/' . $companies->product_services) }}" target="_blank"> {{$companies->product_services}}</a><br>
+                      
+                     
                     </td>
+                  </tr>
+                  <tr>
+                    <th>Updated on</th>
+                    <td>{{$companies->updated_at->toFormattedDateString()}} - <i>{{$companies->updated_at->diffForHumans()}}</i></td>
                   </tr>
                   
                   

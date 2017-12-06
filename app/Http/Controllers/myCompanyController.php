@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-//use Mail;
-//use App\Mail\ReferralAdded;
-
 use Illuminate\Http\Request;
-use App\myCompany;
-
 use App\Company;
-use Session;
 use App\User;
-use Auth;
+
+use Session;
 use Excel;
+use Auth;
 use DB;
 
 class myCompanyController extends Controller
@@ -24,26 +20,15 @@ class myCompanyController extends Controller
      */
     public function index()
     {
-        
-    // get the current logged in users id
-    // $current_user_id = Auth::user()->id;
+       
+       // get the current logged in users id
+       $current_user_id = Auth::user()->id;
+       //dd($companies);
 
-    //$companies = User::find(1)->companies;
-    //$companies = Company::find(1)->user;
-    //$companies = Company::all()->user;
-    //$companies = User::all()->companies;
-    //$companies = User::all()->link2->get();
-
-
-    //$companies = User::find(1)->link2companies;
-    //$companies = DB::table('companies')->where('user_id', $current_user_id)->get();
-    // get the current logged in users comapanys 
-    //$companies = User::find($current_user_id)->link2;
-    //$companies = User::find(1)->link2;
-   // $companies = Company::find(1);
-    $companies = Company::all();
-
-       //$companys = Company::all();
+       // $companies = DB::table('companies')->where('user_id', 5)->get();
+       $companies = Company::where('user_id', $current_user_id)->get();
+       
+       //return $companies;
        //dd($companies);
        return view('manage.mycompany.index')->withcompanies($companies);
     }
@@ -69,51 +54,53 @@ class myCompanyController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
         $this->validate($request, [
         'user_id' => 'required|max:20',
-        'firstname' => 'required|max:255',
-        'lastname' => 'required|max:255',
-        'email' => 'required|max:100|email|unique:companys',
-        
+        'company_name' => 'required|unique:companies|max:255',
+        //'lastname' => 'required|max:255',
+        'email' => 'required|max:100|email',
+        // 'ID_number' => 'required|max:100'
       ]);
 
-      $companys = new Referral();
-      $companys->user_id = $request->user_id;
-      $companys->firstname = $request->firstname;
-      $companys->lastname = $request->lastname;
-      $companys->email = $request->email;
-      $companys->landline_number = $request->landline_number;
-      $companys->mobile_number = $request->mobile_number;
-      $companys->ID_number = $request->ID_number;
-      $companys->date_signed = $request->date_signed;
-      $companys->date_paid = $request->date_paid;
-      $companys->save();
+        
 
+      $companies = new Company();
+      $companies->user_id = $request->user_id;
+      $companies->company_name = $request->company_name;
+      $companies->website_url = $request->website_url;
+      $companies->email = $request->email;
+      $companies->landline_number = $request->landline_number;
+      $companies->mobile_number = $request->mobile_number;
+      // $companies->product_services = $request->product_services;
+      // $companies->product_services = implode(',', $request->product_services);
+      $companies->company_type = $request->company_type;
+      $companies->description = $request->description;
+      $companies->registration_no = $request->registration_no;
+      $companies->vat_registered = $request->vat_registered;
+      $companies->years_operated = $request->years_operated;
+      $companies->physical_address = $request->physical_address;
+
+         if ($request->hasFile('product_services')) {
+            // get the file attributes
+            $file = $request->product_services;
+            // build a unique time-name to prevent same name upload overite issues
+            // $name = time() . '-' . $request->company_name;
+            $slug = str_slug($request->company_name, '-');
+            $name = time() . '-' . $slug . '.' . $file->getClientOriginalExtension();
+            // move file to Public Path / Upload folder - rename the file with timestamp - orginal name
+            $file = $file->move(public_path() .'/uploads/business_logos/', $name);
+            $companies->product_services = $name;
+            }
+
+      $companies->save();
+      //dd($companies);
       // if ($request->permissions) {
-      //   $companys->syncPermissions(explode(',', $request->permissions));
+      //   $companies->syncPermissions(explode(',', $request->permissions));
       // }
 
-     Session::flash('success', 'Successfully added your new '. $companys->firstname . ' referral in the database.');
-     
-     // get the id for the inserted referral
-     $insertedId = $companys->id;
-     // get the referral data for the last inserted referral
-     $company = Referral::findOrFail($insertedId);
-     //dd($referral);
-     
-     // get the current logged in users id
-    //$user_name = Auth::user()->name;
-
-
-     // email the referral to confirm 
-     // $mail = $request->email;
-     // Mail::to($mail)->send(new ReferralAdded($com));
-     // 
-     // email the current user and send through the referral data
-     // Mail::to($request->user())->send(new ReferralAdded($referral));
-
-      return redirect()->route('mycompany.show', $companys->id);
+      Session::flash('success', 'Successfully created the new '. $companies->company_name . ' business in the database.');
+      return redirect()->route('mycompany.show', $companies->id);
     }
 
     /**
@@ -124,11 +111,9 @@ class myCompanyController extends Controller
      */
     public function show($id)
     {
-        
-
         //
-        $companys = Referral::findOrFail($id);
-        return view("manage.mycompany.show")->withcompanys($companys)->withuser($user);
+        $companies = Company::findOrFail($id);
+        return view("manage.mycompany.show")->withcompanies($companies);
 
     }
 
@@ -143,14 +128,14 @@ class myCompanyController extends Controller
         // get all users
         $users = User::all();
         //dd($users);
-       
+
         // get the user_id from input (referral/user_id) get User from value
        // $user_id = Referral::get('user_id');
        // $subcategories = User::where('id','=',$user_id)->get();
 
         //
-        $companys = Referral::findOrFail($id);
-        return view("manage.mycompany.edit")->withcompanys($companys)->withUsers($users);
+        $companies = Company::findOrFail($id);
+        return view("manage.mycompany.edit")->withcompanies($companies)->withUsers($users);
     }
 
     /**
@@ -163,26 +148,51 @@ class myCompanyController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            //'email' => 'required|max:100|email',
-            //'ID_number' => 'required|max:100'
-        ]);
-          $companys = Referral::findOrFail($id);
-          $companys->user_id = $request->user_id;
-          $companys->firstname = $request->firstname;
-          $companys->lastname = $request->lastname;
-          // $companys->email = $request->email;
-          $companys->landline_number = $request->landline_number;
-          $companys->mobile_number = $request->mobile_number;
-          $companys->ID_number = $request->ID_number;
-          // $companys->status = $request->status;
-          $companys->date_signed = $request->date_signed;
-          $companys->date_paid = $request->date_paid;
-          $companys->save();
+        //$current_user_id = Auth::user()->id;
 
-        Session::flash('success', 'Successfully updated the referral - ' . $companys->firstname . '.');
+        $this->validate($request, [
+        //'user_id' => 'required|max:20',
+        //'company_name' => 'required|unique:companies|max:255',
+        //'company_name' => 'required|unique:companies,user_id,'.$current_user_id, 
+        //'company_name' => 'required|max:255',
+
+        
+        //'email' => 'required|max:255',
+        'email' => 'required|max:100|email',
+        // 'ID_number' => 'required|max:100'
+      ]);
+
+      $companies = Company::findOrFail($id);
+      $companies->user_id = $request->user_id;
+      $companies->company_name = $request->company_name;
+      $companies->website_url = $request->website_url;
+      $companies->email = $request->email;
+      $companies->landline_number = $request->landline_number;
+      $companies->mobile_number = $request->mobile_number;
+      // $companies->product_services = $request->product_services;
+      // $companies->product_services = implode(',', $request->product_services);
+      $companies->company_type = $request->company_type;
+      $companies->description = $request->description;
+      $companies->registration_no = $request->registration_no;
+      $companies->vat_registered = $request->vat_registered;
+      $companies->years_operated = $request->years_operated;
+      $companies->physical_address = $request->physical_address;
+
+         if ($request->hasFile('product_services')) {
+            // get the file attributes
+            $file = $request->product_services;
+            // build a unique time-name to prevent same name upload overite issues
+            // $name = time() . '-' . $request->company_name;
+            $slug = str_slug($request->company_name, '-');
+            $name = time() . '-' . $slug . '.' . $file->getClientOriginalExtension();
+            // move file to Public Path / Upload folder - rename the file with timestamp - orginal name
+            $file = $file->move(public_path() .'/uploads/business_logos/', $name);
+            $companies->product_services = $name;
+            }
+
+      $companies->save();
+
+        Session::flash('success', 'Updated: ' . $companies->company_name . ' business');
         return redirect()->route('mycompany.show', $id);
     }
 
@@ -195,61 +205,15 @@ class myCompanyController extends Controller
     public function destroy($id)
     {
         //
-        $companys = Referral::findOrFail($id);
-        $companys->delete();
+        //
+        $companies = Company::findOrFail($id);
+        $companies->delete();
 
-        Session::flash('warning', 'Successfully deleted the referral - ' . $companys->firstname . '.');
+        Session::flash('warning', 'Successfully deleted the business - ' . $companies->firstname . '.');
         return redirect()->route('mycompany.index', $id);
     }
 
-
     /**
-     * Accept refer a friend via email link
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function accept($id)
-    {
-        //
-        $companys = Referral::findOrFail($id);
-        
-        if (!is_null($companys)) {
-            $companys->status = 2;
-            $companys->save();
-            Session::flash('success', 'Your option to accept the referral has been sent.');
-            return redirect()->route('register', $id);
-        }
-        Session::flash('danger', 'Error - Please try again');
-        return redirect()->route('register', $id);
-
-        
-    }
-
-    /**
-     * Decline refer a friend via email link
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function decline($id)
-    {
-        //
-        $companys = Referral::findOrFail($id);
-        
-        if (!is_null($companys)) {
-            $companys->status = 3;
-            $companys->save();
-            Session::flash('warning', 'Your option to decline the referral has been sent. You may close this page now.');
-            return redirect()->route('register', $id);
-        }
-        Session::flash('error', 'Error - Please try again');
-        return redirect()->route('register', $id);
-
-        
-    }
-
- /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -257,34 +221,51 @@ class myCompanyController extends Controller
      */
     public function excel()
     {
+        // Execute the query used to retrieve the data. In this example
+        // http://www.maatwebsite.nl/laravel-excel/docs
+
+        // $payments = Payment::join('users', 'users.id', '=', 'payments.id')
+        //     ->select(
+        //       'payments.id', 
+        //       \DB::raw("concat(users.first_name, ' ', users.last_name) as `name`"), 
+        //       'users.email', 
+        //       'payments.total', 
+        //       'payments.created_at')
+        //     ->get();
+
+        //$payments = Company::all();
+        //dump($payments);
+
+        // get the current logged in users id
+       $current_user_id = Auth::user()->id;
+
+       // $companies = DB::table('companies')->where('user_id', 5)->get();
+       $payments = Company::where('user_id', $current_user_id)->get();
         
 
-        // Execute the query used to retrieve the data.
-        $mycompany = Referral::select('firstname', 'lastname', 'email', 'landline_number', 'mobile_number', 'ID_number', 'status', 'date_signed', 'date_paid', 'created_at')->where('user_id',Auth::user()->id)->get();
-
-        //dump($mycompany);    
-            
-        // Initialize the array which will be passed into the Excel generator.
-        $mycompanyArray = []; 
+        // Initialize the array which will be passed into the Excel
+        // generator.
+        $paymentsArray = []; 
 
         // Define the Excel spreadsheet headers
-        $mycompanyArray[] = ['Firstname', 'Lastname', 'Email', 'Landline Number', 'Mobile Number', 'ID Number', 'Status', 'Date Signed', 'Date Paid', 'Created At'];
-        // Convert each member of the returned collection into an array, and append it to the mycompany array.
-        foreach ($mycompany as $referral) {
-            $mycompanyArray[] = $referral->toArray();
+        $paymentsArray[] = ['ID','User ID', 'Company Name', 'Email', 'Landline Number', 'Mobile Number', 'Website', 'Logo', 'Company Type', 'Description', 'Reg Number', 'Vat Reg', 'Year Est', 'Address', 'Created', 'Modified'];
+        // Convert each member of the returned collection into an array,
+        // and append it to the payments array.
+        foreach ($payments as $payment) {
+            $paymentsArray[] = $payment->toArray();
         }
 
         // Generate and return the spreadsheet
-        Excel::create('mycompany', function($excel) use ($mycompanyArray) {
+        Excel::create('mybusiness', function($excel) use ($paymentsArray) {
 
             // Set the spreadsheet title, creator, and description
-            $excel->setTitle('companys');
+            $excel->setTitle('business');
             $excel->setCreator('eLan')->setCompany('eLan Property Group');
-            $excel->setDescription('companys');
+            $excel->setDescription('business');
 
-            // Build the spreadsheet, passing in the mycompany array
-            $excel->sheet('sheet1', function($sheet) use ($mycompanyArray) {
-                $sheet->fromArray($mycompanyArray, null, 'A1', false, false);
+            // Build the spreadsheet, passing in the payments array
+            $excel->sheet('sheet1', function($sheet) use ($paymentsArray) {
+                $sheet->fromArray($paymentsArray, null, 'A1', false, false);
                 
                 // Freeze first row
                  $sheet->freezeFirstRow();
@@ -292,40 +273,46 @@ class myCompanyController extends Controller
                 // Auto filter for entire sheet
                  $sheet->setAutoFilter();
             });
-                //download('xlsx');
+
         })->download('xlsx');
     }
 
-        public function csv()
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function csv()
     {
-        
 
-        // Execute the query used to retrieve the data.
-        $mycompany = Referral::select('firstname', 'lastname', 'email', 'landline_number', 'mobile_number', 'ID_number', 'status', 'date_signed', 'date_paid', 'created_at')->where('user_id',Auth::user()->id)->get();
 
-        //dump($mycompany);    
-            
-        // Initialize the array which will be passed into the Excel generator.
-        $mycompanyArray = []; 
+        $payments = Company::all();
+        //dump($payments);
+
+        // Initialize the array which will be passed into the Excel
+        // generator.
+        $paymentsArray = []; 
 
         // Define the Excel spreadsheet headers
-        $mycompanyArray[] = ['Firstname', 'Lastname', 'Email', 'Landline Number', 'Mobile Number', 'ID Number', 'Status', 'Date Signed', 'Date Paid', 'Created At'];
-        // Convert each member of the returned collection into an array, and append it to the mycompany array.
-        foreach ($mycompany as $referral) {
-            $mycompanyArray[] = $referral->toArray();
+        $paymentsArray[] = ['ID','User ID', 'Company Name', 'Email', 'Landline Number', 'Mobile Number', 'Website', 'Logo', 'Company Type', 'Description', 'Reg Number', 'Vat Reg', 'Year Est', 'Address', 'Created', 'Modified'];
+        // Convert each member of the returned collection into an array,
+        // and append it to the payments array.
+        foreach ($payments as $payment) {
+            $paymentsArray[] = $payment->toArray();
         }
 
         // Generate and return the spreadsheet
-        Excel::create('mycompany', function($excel) use ($mycompanyArray) {
+        Excel::create('mybusiness', function($excel) use ($paymentsArray) {
 
             // Set the spreadsheet title, creator, and description
-            $excel->setTitle('companys');
+            $excel->setTitle('business');
             $excel->setCreator('eLan')->setCompany('eLan Property Group');
-            $excel->setDescription('companys');
+            $excel->setDescription('business');
 
-            // Build the spreadsheet, passing in the mycompany array
-            $excel->sheet('sheet1', function($sheet) use ($mycompanyArray) {
-                $sheet->fromArray($mycompanyArray, null, 'A1', false, false);
+            // Build the spreadsheet, passing in the payments array
+            $excel->sheet('sheet1', function($sheet) use ($paymentsArray) {
+                $sheet->fromArray($paymentsArray, null, 'A1', false, false);
                 
                 // Freeze first row
                  $sheet->freezeFirstRow();
@@ -333,16 +320,8 @@ class myCompanyController extends Controller
                 // Auto filter for entire sheet
                  $sheet->setAutoFilter();
             });
-                
+
         })->download('csv');
     }
 
 }
-
-
-// $users = User::select('id', 'name', 'email', 'created_at')->get();
-// Excel::create('users', function($excel) use($users) {
-//     $excel->sheet('Sheet 1', function($sheet) use($users) {
-//         $sheet->fromArray($users);
-//     });
-// })->export('xls');

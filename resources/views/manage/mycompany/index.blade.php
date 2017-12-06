@@ -1,6 +1,6 @@
 @extends('layouts.admin.admin_starter_app')
 
-@section('title', 'My Business')
+@section('title', 'My companies')
 
 @section('pageHeader')
     @parent
@@ -42,26 +42,26 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Businesss Name</th>
-                  <th>URL</th>
-                  <th>Email</th>
-                  <th>Landline Number</th>
-                  <th>Mobile Number</th>
-                  <th>Status</th>
-                  <th>Date Created</th>
-                  <th></th>
+                  <th>Entry Date</th>
+                  <th>Logo</th>
+                  <th>Business Name</th>
+                  <th>Type</th>
+                  <th>Contact Info</th>
+                  <th> Actions </th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($companies as $company)
                 <tr>
+                  <td>{{$company->created_at->toFormattedDateString()}} <br/> (<i>{{$company->created_at->diffForHumans()}}</i>)</td>
+                  <td><img src="{{ asset('uploads/business_logos/' . $company->product_services) }}" width="100px"></td>
                   <td>{{$company->company_name}}</td>
-                  <td>{{$company->website_url}}</td>
-                  <td>{{$company->email}}</td>
-                  <td>{{$company->landline_number}}</td>
-                  <td>{{$company->mobile_number}}</td>
-                  <td>{{$company->getCompanyUsernames()}}</td>
-                  
+                  <td>{{$company->company_type}}</td>
+                  <td>
+                  <i class="fa fa-fw fa-link"></i> <a href="{{$company->website_url}}" target="_blank"> {{$company->website_url}}</a><br/>
+                  <i class="fa fa-fw fa-envelope-o"></i> <a href="mailto:{{$company->email}}"> {{$company->email}}</a><br/>
+                  <i class="fa fa-fw fa-phone"></i> <tel>{{$company->landline_number}}</tel><br/>
+                  <i class="fa fa-fw fa-mobile-phone"></i> <tel>{{$company->mobile_number}}</tel></td>
                   <td>
                       <div class="btn-group">
                       <a class="btn btn-default" href="{{route('mycompany.show', $company->id)}}"><i class="fa fa-eye"></i> </a> 
