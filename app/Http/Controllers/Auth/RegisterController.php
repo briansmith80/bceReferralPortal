@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Role;
+//use App\Role;
 use App\User;
+use App\mail\Registerwelcome;
+
+use Illuminate\Support\Facades\Mail;
+
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -62,46 +67,40 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    // protected function create(array $data)
+    // {
        
+    //     $fields = [
+    //         'name'     => $data['name'],
+    //         'email'    => $data['email'],
+    //         'password' => bcrypt($data['password']),
+    //         'usertype' => $data['usertype'],
 
+    //     ];
 
-
-        $fields = [
-            'name'     => $data['name'],
-            'email'    => $data['email'],
+        protected function create(array $data)
+         {
+            $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'usertype' => $data['usertype'],
+            ]);
 
-        ];
-        // if (config('auth.providers.users.field','email') === 'username' && isset($data['username'])) {
-        //     $fields['username'] = $data['username'];
-        // }
+            auth()->login($user);
+            
+            // $selectedRoleType = $user->usertype;
+            $user->attachRole($data['usertype']);
 
-      // dd($fields);
-        return User::create($fields);
+            // Send a welcome email to new registered user
+            \Mail::to($user)->send(new Registerwelcome($user));
 
-        ///EXTRA///
-        /// put below extra code in vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php
-        //Requests the user type from register form           
-        $user->usertype = $request->usertype;
-        // Saves user Type to logged in user
-        $user->save();
+             return $user;
+            //return redirect()->home();
+         }
+       
+         
 
-        // Get selected role type variable from register form 
-        $selectedRoleType = $request->usertype;
-        
-        // Get current logged in user ID
-        $current_user_id = Auth::user()->id;  
-        $user = User::findOrFail($current_user_id); //Find user based of current logged in user id for below user attach
-        // Get Role Info 
-        //$friend = Role::where('name', 'friend')->first();
-
-        // Attach Role based of user choice from form and user looged in.
-        $user->attachRole($selectedRoleType); //$friend or 6 or $selectedRoleType
-        //$user->attchRole(6);
-        ///EXTRA///
-    }
+    
 
 }

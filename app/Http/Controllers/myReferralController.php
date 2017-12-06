@@ -114,10 +114,10 @@ class myReferralController extends Controller
     public function show($id)
     {
         
-
+        //$user = User::all();
         //
         $referrals = Referral::findOrFail($id);
-        return view("manage.myreferrals.show")->withReferrals($referrals)->withuser($user);
+        return view("manage.myreferrals.show")->withReferrals($referrals);
 
     }
 

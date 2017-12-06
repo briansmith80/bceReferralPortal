@@ -2,7 +2,8 @@
 
 namespace App\Mail;
 
-use App\Referral;
+use App\User;
+//use App\Http\Controllers\Auth\
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -13,23 +14,34 @@ class Registerwelcome extends Mailable
 {
     use Queueable, SerializesModels;
 
+   /**
+     * The order instance.
+     *
+     * @var Order
+     */
+    public $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-     public function __construct(Referral $referral)
+    public function __construct(User $user)
     {
-        $this->referral = $referral;
+        $this->user = $user;
+        //dd($user);
     }
 
     /**
      * Build the message.
-     *
+          *
      * @return $this
      */
     public function build()
     {
-        return $this->markdown('emails.registerwelcome');
+
+         return $this->from('noreply@blythedale.co.za')
+                    ->subject('Welcome to Blythedale Coastal Estate bcePortal')
+                    ->view('emails.registerwelcome');
     }
 }
