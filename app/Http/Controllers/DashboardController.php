@@ -47,6 +47,8 @@ class DashboardController extends Controller
             $user = User::where('id', $id)->first();   
             //$referrals = Referral::all();
             
+         
+
             
 
             //dd($referrals_completed);
