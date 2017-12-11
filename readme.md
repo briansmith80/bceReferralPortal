@@ -15,7 +15,7 @@ Referral Project for Blythedale Coastal Estate - Allows users and agents to regi
 
 ## Project Status
 
-Project is still under development 
+N.B Project is still under development. 
 
 <!-- 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>

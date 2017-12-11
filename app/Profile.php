@@ -37,4 +37,6 @@ class Profile extends Authenticatable
     {
         return $this->hasMany('App\Referral');
     }
+    
 }
+

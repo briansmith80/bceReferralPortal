@@ -15,12 +15,13 @@ class Dashboard extends Model
     //  */
     public function scopePopular($query)
     {
+        
         return $query->where('user_id', '>', 1);
-
+        
     }
 
     /**
-     * Scope a query to only include active users.
+     * Scope a query to only include active use`rs.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
@@ -34,5 +35,5 @@ class Dashboard extends Model
     {
         return $query->where('status', $type);
     }
-
+    
 }

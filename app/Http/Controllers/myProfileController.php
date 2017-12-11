@@ -51,6 +51,7 @@ class myProfileController extends Controller
 
             //dd($referrals_completed);
 
+            //
             return view('manage.myprofile.index')->withReferrals($referrals)->with('total', $referrals_total)->withUser($user)->with('pending', $referrals_pending)->with('accepted', $referrals_accepted)->with('declined', $referrals_declined)->with('completed', $referrals_completed)->with('roles', $roles);
             //echo 'index';
     }

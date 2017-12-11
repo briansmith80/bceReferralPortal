@@ -55,9 +55,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Company');
     }
 
-    
-
-
     public function company()
     {
         return $this->belongsToMany('Company')->withTimestamps();

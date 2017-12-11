@@ -33,6 +33,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     
+                    
                     <h1>Welcome, {{ Auth::user()->name }}!</h1>
                     <p class="lead">Thanks for becoming a member -- we're excited to have you on board!</p>
                     
@@ -44,6 +45,7 @@
                     <p>You can now use the bce<strong>Portal</strong> platform to manage all your Trading business. 
                     Use the links on the right to get started, and if you have any questions, please let us know!</p>
                     @endrole
+                    
 
                   </div>
                   <div class="col-md-6">
