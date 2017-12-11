@@ -104,7 +104,19 @@
                 <li class="list-group-item">
                   <b>Completed Referrals</b> <a class="pull-right">{{$completed}}</a>
                 </li>
+                 <li class="list-group-item">
+                  <b>Profile Completed:</b> <a class="pull-right"><strong>{{{ number_format((float) $percent, 0) }}}%</strong></a>
+               
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%">
+                        <span class="sr-only">{{$percent}}% Complete (success)</span>
+                      </div>
+                    </div>
+               
+               </li>
               </ul>
+
+                  
 
               <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
             </div>
@@ -139,6 +151,7 @@
                     @endempty
                     alt="{{ Auth::user()->name }} profile ">
                 </li>
+                
                 <li class="list-group-item">
                   <b>Name</b> <a class="pull-right">{{ Auth::user()->name }}</a>
                 </li>
