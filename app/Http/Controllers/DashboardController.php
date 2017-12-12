@@ -48,11 +48,35 @@ class DashboardController extends Controller
             //$referrals = Referral::all();
             
          
-
+            // User Profile completion score
+            //$profile = User::where('id', $id)->first(); //using $user instead on $profile
+            $maxScore = 8;
+            $points = [
+                'name' => 1, //1
+                'surname' => 1, //2
+                'email' => 1, //3
+                'phone' => 1, //4
+                'mobile' => 1, //5
+                'id_number' => 1, //6
+                'dob' => 1, //7
+                'agency' => 1, //8
+                'ffc_number' => 1, //9
+                'ffc_upload' => 1, //10
+                'profilepic' => 1, //11
+                // etc, map all fields to a value
+              ];
+              $score = 0;
+              foreach ($points as $field => $value) {
+                if (!empty($user->$field)) {
+                  $score += $value;
+                }
+              };
+            $percent = $score / $maxScore * 100;
+            //dd($percent);
             
 
             //dd($referrals_completed);
-            return view('manage.dashboard')->withReferrals($referrals)->with('total', $referrals_total)->withUser($user)->with('pending', $referrals_pending)->with('accepted', $referrals_accepted)->with('declined', $referrals_declined)->with('completed', $referrals_completed);
+            return view('manage.dashboard')->withReferrals($referrals)->with('total', $referrals_total)->withUser($user)->with('pending', $referrals_pending)->with('accepted', $referrals_accepted)->with('declined', $referrals_declined)->with('completed', $referrals_completed)->with('percent', $percent);
             //echo 'index';
             
     }

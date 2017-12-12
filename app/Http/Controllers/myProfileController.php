@@ -50,8 +50,8 @@ class myProfileController extends Controller
             $roles = $user->roles()->get();
 
             // User Profile completion score
-            //$profile = User::where('id', $id)->first(); //using user instead on $profile
-            $maxScore = 11;
+            //$profile = User::where('id', $id)->first(); //using $user instead on $profile
+            $maxScore = 8;
             $points = [
                 'name' => 1, //1
                 'surname' => 1, //2
