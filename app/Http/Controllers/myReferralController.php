@@ -23,6 +23,12 @@ class myReferralController extends Controller
     public function index()
     {
         
+    // Get the currently authenticated user...
+    $user = Auth::user();
+
+    // Get the currently authenticated user's ID...
+    $id = Auth::id();
+    
     // get the current logged in users id
     $current_user_id = Auth::user()->id;
 

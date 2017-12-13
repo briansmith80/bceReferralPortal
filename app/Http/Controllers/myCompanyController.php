@@ -21,15 +21,15 @@ class myCompanyController extends Controller
     public function index()
     {
        
-       // get the current logged in users id
-       $current_user_id = Auth::user()->id;
-       //dd($companies);
+    // Get the current logged in user
+    $user = Auth::User();   
+    // dd($user->id);
 
-       // $companies = DB::table('companies')->where('user_id', 5)->get();
-       $companies = Company::where('user_id', $current_user_id)->get();
-       
-       //return $companies;
-       //dd($companies);
+    // $companies = DB::table('companies')->where('user_id', 5)->get();
+    $companies = Company::where('user_id', $user->id)->get();
+        
+    // $companies = $user->company;
+
        return view('manage.mycompany.index')->withcompanies($companies);
     }
 

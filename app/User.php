@@ -33,31 +33,26 @@ class User extends Authenticatable
      * Get the Refferrals for the user.
      */
 
-    public function link1()
-    {
+    public function link1() {
         return $this->hasMany('App\Referral');
     }
 
-     public function link2()
-    {
+     public function link2() {
         return $this->hasMany('App\Company');
     }
 
     //A user has many Referrals
-    public function referrals()
-    {
-        return $this->hasMany('App\referral');
+    public function referrals() {
+        return $this->hasMany('App\Referral');
     }
 
     //A user has many Companies
-    public function companies()
-    {
-        return $this->hasMany('App\Company');
+    // public function companies() {
+    //     return $this->hasMany('Companies');
+    // }
+
+    public function company() {
+        return $this->hasMany('Company');
     }
 
-    public function company()
-    {
-        return $this->belongsToMany('Company')->withTimestamps();
-    }
-
-}
+ }
