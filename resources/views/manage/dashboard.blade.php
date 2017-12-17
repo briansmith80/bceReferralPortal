@@ -161,7 +161,7 @@
                 @endrole
 
                 @role('superadministrator|administrator|member|user|supplier')
-                Supplier / Trader 
+                Supplier / Trader Info Shows here
                 @endrole
 
 
