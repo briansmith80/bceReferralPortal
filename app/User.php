@@ -37,16 +37,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Referral');
     }
 
-     public function link2() {
+    public function link2() {
         return $this->hasMany('App\Company');
     }
 
-    //A user has many Referrals
+    // A user has many Referrals
     public function referrals() {
         return $this->hasMany('App\Referral');
     }
 
-    //A user has many Companies
+    // A user has many Companies
     // public function companies() {
     //     return $this->hasMany('Companies');
     // }
