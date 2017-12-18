@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dashboard extends Model
 {
-    //
-    // ///**
-    //  * Scope a query to only include popular users.
-    //  *
-    //  * @param \Illuminate\Database\Eloquent\Builder $query
-    //  * @return \Illuminate\Database\Eloquent\Builder
-    //  */
+    
+    /**
+      * Scope a query to only include popular users.
+      *
+      * @param \Illuminate\Database\Eloquent\Builder $query
+      * @return \Illuminate\Database\Eloquent\Builder
+      */
     public function scopePopular($query)
     {
         
@@ -21,7 +21,7 @@ class Dashboard extends Model
     }
 
     /**
-     * Scope a query to only include active use`rs.
+     * Scope a query to only include active users.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
