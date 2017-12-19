@@ -74,6 +74,8 @@ class DashboardController extends Controller
             $percent = $score / $maxScore * 100;
             //dd($percent);
             
+            // Testing Laragon Mail Catcher - not working?
+            mail('brian@elan.co.za', 'Email Subject', 'Email Message');
 
             //dd($referrals_completed);
             return view('manage.dashboard')->withReferrals($referrals)->with('total', $referrals_total)->withUser($user)->with('pending', $referrals_pending)->with('accepted', $referrals_accepted)->with('declined', $referrals_declined)->with('completed', $referrals_completed)->with('percent', $percent);
