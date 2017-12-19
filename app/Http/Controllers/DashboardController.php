@@ -49,7 +49,7 @@ class DashboardController extends Controller
             
          
             // User Profile completion score
-            //$profile = User::where('id', $id)->first(); //using $user instead on $profile
+            //$profile = User::where('id', $id)->first(); 
             $maxScore = 8;
             $points = [
                 'name' => 1, //1
@@ -67,15 +67,16 @@ class DashboardController extends Controller
               ];
               $score = 0;
               foreach ($points as $field => $value) {
-                if (!empty($user->$field)) {
+                if (!empty($user->$field)) { //using $user instead on $profile
                   $score += $value;
                 }
               };
             $percent = $score / $maxScore * 100;
             //dd($percent);
             
-            // Testing Laragon Mail Catcher - not working?
-            mail('brian@elan.co.za', 'Email Subject', 'Email Message');
+            // Testing Laragon Mail Catcher
+            // Must use gmail email provided in settings for it to work 
+            //mail('mixmethod@gmail.com', 'Welcome', 'Thanks for becoming a member -- were excited to have you on board!');
 
             //dd($referrals_completed);
             return view('manage.dashboard')->withReferrals($referrals)->with('total', $referrals_total)->withUser($user)->with('pending', $referrals_pending)->with('accepted', $referrals_accepted)->with('declined', $referrals_declined)->with('completed', $referrals_completed)->with('percent', $percent);
