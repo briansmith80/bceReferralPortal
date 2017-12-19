@@ -9,7 +9,7 @@ class Company extends Model
 {
     
     /**
-     * Get the Refferrals for the user. 
+     * Get the Refferrals for the user. // test 
      */
 
     public function companyhasOne()
