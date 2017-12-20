@@ -1,0 +1,147 @@
+PROJECT PLAN DIAGRAM
+:::::::::::::::::::::::
+
+// Command line to access mysql and dump tables  
+1.) mysql -u root -p referral     // password: empty   // mysqldump -u root -p referral > db_backup.sql
+2.) show tables;
+3.) describe [table];
+4.) show index from [table];
+5.) SELECT * FROM [table];
+
++--------------------+
+| Tables_in_referral |
++--------------------+
+| companies          |
+| migrations         |
+| password_resets    |
+| permission_role    |
+| permission_user    |
+| permissions        |
+| referrals          |
+| role_user          |
+| roles              |
+| users              |
++--------------------+
+10 rows
+
+users
++----------------+------------------+------+-----+---------+----------------+            
+| Field          | Type             | Null | Key | Default | Extra          |            
++----------------+------------------+------+-----+---------+----------------+            
+| id             | int(10) unsigned | NO   | PRI | NULL    | auto_increment |            
+| name           | varchar(191)     | NO   |     | NULL    |                |            
+| surname        | varchar(191)     | YES  |     | NULL    |                |            
+| email          | varchar(191)     | NO   | UNI | NULL    |                |            
+| password       | varchar(191)     | NO   |     | NULL    |                |            
+| phone          | varchar(191)     | YES  |     | NULL    |                |            
+| mobile         | varchar(191)     | YES  |     | NULL    |                |            
+| id_number      | varchar(191)     | YES  |     | NULL    |                |            
+| dob            | date             | YES  |     | NULL    |                |            
+| agency         | varchar(191)     | YES  |     | NULL    |                |            
+| ffc_number     | varchar(191)     | YES  |     | NULL    |                |            
+| ffc_upload     | varchar(191)     | YES  |     | NULL    |                |            
+| usertype       | varchar(191)     | YES  |     | NULL    |                |            
+| remember_token | varchar(100)     | YES  |     | NULL    |                |            
+| profilepic     | varchar(191)     | YES  |     | NULL    |                |            
+| created_at     | timestamp        | YES  |     | NULL    |                |            
+| updated_at     | timestamp        | YES  |     | NULL    |                |            
++----------------+------------------+------+-----+---------+----------------+            
+17 rows 
+
+MariaDB [referral]> describe roles;
++--------------+------------------+------+-----+---------+----------------+
+| Field        | Type             | Null | Key | Default | Extra          |
++--------------+------------------+------+-----+---------+----------------+
+| id           | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(191)     | NO   | UNI | NULL    |                |
+| display_name | varchar(191)     | YES  |     | NULL    |                |
+| description  | varchar(191)     | YES  |     | NULL    |                |
+| created_at   | timestamp        | YES  |     | NULL    |                |
+| updated_at   | timestamp        | YES  |     | NULL    |                |
++--------------+------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+MariaDB [referral]> describe role_user;
++-----------+------------------+------+-----+---------+-------+
+| Field     | Type             | Null | Key | Default | Extra |
++-----------+------------------+------+-----+---------+-------+
+| role_id   | int(10) unsigned | NO   | PRI | NULL    |       |
+| user_id   | int(10) unsigned | NO   | PRI | NULL    |       |
+| user_type | varchar(191)     | NO   | PRI | NULL    |       |
++-----------+------------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+MariaDB [referral]> describe referrals;
++-----------------+------------------+------+-----+---------+----------------+
+| Field           | Type             | Null | Key | Default | Extra          |
++-----------------+------------------+------+-----+---------+----------------+
+| id              | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| user_id         | int(10) unsigned | NO   |     | NULL    |                |
+| firstname       | varchar(191)     | YES  |     | NULL    |                |
+| lastname        | varchar(191)     | YES  |     | NULL    |                |
+| email           | varchar(191)     | YES  |     | NULL    |                |
+| landline_number | varchar(191)     | YES  |     | NULL    |                |
+| mobile_number   | varchar(191)     | YES  |     | NULL    |                |
+| ID_number       | varchar(191)     | YES  |     | NULL    |                |
+| status          | int(11)          | YES  |     | NULL    |                |
+| date_signed     | date             | YES  |     | NULL    |                |
+| date_paid       | date             | YES  |     | NULL    |                |
+| created_at      | timestamp        | YES  |     | NULL    |                |
+| updated_at      | timestamp        | YES  |     | NULL    |                |
++-----------------+------------------+------+-----+---------+----------------+
+13 rows in set (0.00 sec)
+
+MariaDB [referral]> describe permissions;
++--------------+------------------+------+-----+---------+----------------+
+| Field        | Type             | Null | Key | Default | Extra          |
++--------------+------------------+------+-----+---------+----------------+
+| id           | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(191)     | NO   | UNI | NULL    |                |
+| display_name | varchar(191)     | YES  |     | NULL    |                |
+| description  | varchar(191)     | YES  |     | NULL    |                |
+| created_at   | timestamp        | YES  |     | NULL    |                |
+| updated_at   | timestamp        | YES  |     | NULL    |                |
++--------------+------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+MariaDB [referral]> describe permission_user;
++---------------+------------------+------+-----+---------+-------+
+| Field         | Type             | Null | Key | Default | Extra |
++---------------+------------------+------+-----+---------+-------+
+| permission_id | int(10) unsigned | NO   | PRI | NULL    |       |
+| user_id       | int(10) unsigned | NO   | PRI | NULL    |       |
+| user_type     | varchar(191)     | NO   | PRI | NULL    |       |
++---------------+------------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [referral]> describe permission_role;
++---------------+------------------+------+-----+---------+-------+
+| Field         | Type             | Null | Key | Default | Extra |
++---------------+------------------+------+-----+---------+-------+
+| permission_id | int(10) unsigned | NO   | PRI | NULL    |       |
+| role_id       | int(10) unsigned | NO   | PRI | NULL    |       |
++---------------+------------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+MariaDB [referral]> describe companies;
++------------------+------------------+------+-----+---------+----------------+
+| Field            | Type             | Null | Key | Default | Extra          |
++------------------+------------------+------+-----+---------+----------------+
+| id               | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| user_id          | int(10) unsigned | NO   |     | NULL    |                |
+| company_name     | varchar(191)     | YES  |     | NULL    |                |
+| email            | varchar(191)     | YES  |     | NULL    |                |
+| landline_number  | varchar(191)     | YES  |     | NULL    |                |
+| mobile_number    | varchar(191)     | YES  |     | NULL    |                |
+| website_url      | varchar(191)     | YES  |     | NULL    |                |
+| product_services | varchar(191)     | YES  |     | NULL    |                |
+| company_type     | varchar(191)     | YES  |     | NULL    |                |
+| description      | text             | YES  |     | NULL    |                |
+| registration_no  | varchar(191)     | YES  |     | NULL    |                |
+| vat_registered   | varchar(191)     | YES  |     | NULL    |                |
+| years_operated   | varchar(191)     | YES  |     | NULL    |                |
+| physical_address | varchar(191)     | YES  |     | NULL    |                |
+| created_at       | timestamp        | YES  |     | NULL    |                |
+| updated_at       | timestamp        | YES  |     | NULL    |                |
++------------------+------------------+------+-----+---------+----------------+
+16 rows in set (0.00 sec)
