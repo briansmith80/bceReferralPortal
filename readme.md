@@ -1,6 +1,6 @@
 ## About bceReferralPortal
 
-Referral Project for Blythedale Coastal Estate - Allows users and agents to register and submit there referrals. 
+Referral Project is for Blythedale Coastal Estate - Allows users and agents to register and submit there referrals. 
 
 - [Blythedale Coastal Estate - Website](http://blythedale.co.za/).
 - [Laravel](https://laravel.com/).
@@ -15,7 +15,7 @@ Referral Project for Blythedale Coastal Estate - Allows users and agents to regi
 
 ## Project Status
 
-N.B Project is still under development. 
+N.B This is a private project is still under development.
 
 <!-- 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
